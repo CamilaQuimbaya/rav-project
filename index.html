@@ -76,7 +76,7 @@ section[id],[id]{scroll-margin-top:84px}
 .intro{display:none}
 html[data-intro] .intro{
   display:flex;position:fixed;inset:0;z-index:100;
-  flex-direction:column;align-items:center;justify-content:center;gap:40px;
+  align-items:center;justify-content:center;
   background:var(--cream);
   padding:var(--pad);
   transition:opacity .5s ease;
@@ -85,13 +85,6 @@ html[data-intro]{overflow:hidden}
 html[data-intro].intro-fin{overflow:auto}
 html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
 .intro rav-logo{width:min(520px,78vw);display:block}
-.intro__saltar{
-  border:1.5px solid rgba(23,54,83,.3);background:transparent;color:var(--ink-70);
-  font-family:var(--sans);font-size:14px;font-weight:600;
-  padding:10px 22px;border-radius:999px;cursor:pointer;min-height:44px;
-  transition:border-color .18s,color .18s;
-}
-.intro__saltar:hover{border-color:var(--navy);color:var(--navy)}
 
 .skip{
   position:absolute;left:12px;top:-60px;z-index:80;
@@ -434,7 +427,6 @@ footer{background:var(--navy);color:#fff}
 
 <div class="intro" id="intro">
   <rav-logo></rav-logo>
-  <button class="intro__saltar" id="intro-saltar">Saltar animación</button>
 </div>
 
 <a class="skip" href="#contenido">Saltar al contenido</a>
@@ -770,7 +762,6 @@ footer{background:var(--navy);color:#fff}
     intro.addEventListener("ravstate", function(e){
       if (e.detail && e.detail.done) setTimeout(cerrarIntro, 450);
     });
-    document.getElementById("intro-saltar").addEventListener("click", cerrarIntro);
     document.addEventListener("keydown", function(e){
       if (e.key === "Escape" || e.key === "Enter" || e.key === " ") cerrarIntro();
     });
