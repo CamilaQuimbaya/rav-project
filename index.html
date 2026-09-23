@@ -70,7 +70,7 @@ h1,h2,h3{margin:0;font-family:var(--display);font-weight:600;line-height:1.15}
 p{margin:0}
 .wrap{max-width:none;margin:0;padding-inline:var(--pad)}
 /* Todo destino de ancla despeja la barra fija. */
-section[id],[id]{scroll-margin-top:136px}
+section[id],[id]{scroll-margin-top:104px}
 
 /* ---------- Intro ---------- */
 .intro{display:none}
@@ -168,13 +168,14 @@ html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
 }
 .bar.on{transform:none}
 .bar__in{
-  max-width:none;margin:0;padding:6px var(--pad);
-  display:flex;align-items:center;gap:20px;min-height:121px;
+  max-width:none;margin:0;padding:5px var(--pad);
+  display:flex;align-items:center;gap:20px;min-height:88px;
 }
-/* Manual p.4: la version con nombre no baja de 280px de ancho, y esa
-   anchura fija el alto de la barra (280 / 2,572 = 109px). */
+/* El manual (p.4) propone 280px minimos para la version con nombre; aqui va
+   a 200px por decision de diseño, para que la barra fija no coma tanto alto.
+   A ese tamaño el nombre sigue siendo legible. */
 .bar__logo{flex:none;display:block}
-.bar__logo .lg-full{width:280px;height:auto;display:block}
+.bar__logo .lg-full{width:200px;height:auto;display:block}
 .bar__logo .lg-mark{display:none;height:56px;width:auto}
 .bar .nav{margin-left:auto}
 .bar .nav a{padding:8px 10px;font-size:14px}
@@ -702,7 +703,7 @@ footer{background:var(--navy);color:#fff}
 <div class="bar" id="bar" aria-hidden="true">
   <div class="bar__in">
     <a class="bar__logo" href="#inicio" aria-label="Rafael Argote Vega, inicio">
-      <img class="lg-full" src="assets/logo-nombre.svg" alt="" width="280" height="109">
+      <img class="lg-full" src="assets/logo-nombre.svg" alt="" width="200" height="78">
       <img class="lg-mark" src="assets/escudo.svg" alt="" width="44" height="56">
     </a>
     <nav class="nav" aria-label="Secciones">
