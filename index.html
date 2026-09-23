@@ -187,6 +187,24 @@ html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
 }
 /* A la altura de la hoja la curva pasa por el 63,5% del alto del separador;
    lo que se resta es el trozo de base que queda oculto detras del relleno. */
+/* Velo superior: sin el, el azul del menu cae a 2,2:1 sobre las hojas
+   oscuras de la foto. Con el velo el peor caso sube a ~9:1. Ademas
+   desenfoca un poco, y la mascara hace que el desenfoque se desvanezca
+   en vez de cortarse con un borde recto. */
+.hero__velo{
+  position:absolute;left:0;right:0;top:0;z-index:4;pointer-events:none;
+  height:clamp(190px,25vh,340px);
+  background:linear-gradient(180deg,
+    rgba(247,245,239,.88) 0%,
+    rgba(247,245,239,.80) 32%,
+    rgba(247,245,239,.46) 64%,
+    rgba(247,245,239,0) 100%);
+  -webkit-backdrop-filter:blur(4px);
+  backdrop-filter:blur(4px);
+  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 46%,rgba(0,0,0,0) 100%);
+  mask-image:linear-gradient(180deg,#000 0%,#000 46%,rgba(0,0,0,0) 100%);
+}
+
 .hero__leaf{
   position:absolute;left:40%;width:128px;z-index:6;pointer-events:none;
   bottom:calc(clamp(72px,8vw,148px) * .635 - 8px);
@@ -619,7 +637,7 @@ footer{background:var(--navy);color:#fff}
   .burger{display:flex;margin-left:auto}
   .bar .nav{display:none}
   .bar .btn{margin-left:auto}
-  .hero__ph,.hero__fade,.hero__leaf{display:none}
+  .hero__ph,.hero__fade,.hero__leaf,.hero__velo{display:none}
   .hero__ph--m{display:block}
   /* La regla de arriba tambien alcanzaba a la hoja del bloque movil. */
   .hero__ph--m .hero__leaf{display:block;bottom:-4px;z-index:2}
@@ -706,6 +724,7 @@ footer{background:var(--navy);color:#fff}
          sizes="64vw" alt="" aria-hidden="true" width="1600" height="900">
   </div>
   <div class="hero__fade" aria-hidden="true"></div>
+  <div class="hero__velo" aria-hidden="true"></div>
   <img class="hero__leaf" src="assets/hojas.svg" alt="" aria-hidden="true">
 
   <header class="head">
