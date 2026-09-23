@@ -7,33 +7,41 @@ Publicado en: https://camilaquimbaya.github.io/rav-project/
 ## Estructura
 
 ```
-index.html                   sitio institucional (export de Claude Design, parcheado)
-plataforma/index.html        la plataforma educativa (prototipo) — NO SE TOCA
-assets/logo-rav.svg          escudo institucional fiel
-assets/logo-rav-negativo.svg escudo fiel en blanco, para fondos oscuros
-tools/instalar-portada.py    reaplica los parches tras cada reexportacion
-.nojekyll                    evita que GitHub Pages procese el sitio con Jekyll
+index.html                    sitio institucional, HTML y CSS a mano
+assets/
+  logo-rav.svg                escudo institucional (fiel)
+  logo-rav-negativo.svg       el mismo escudo en blanco, para fondos oscuros
+  comunidad-1600/800.jpg      foto de portada
+  sede-1600/800.jpg           foto de la franja de historia
+  hojas / estrellas / mision-libro / vision-meta /
+  oferta / proyectos / valores .svg        ilustraciones de marca
+plataforma/index.html         la plataforma educativa (prototipo) — NO SE TOCA
+.nojekyll                     evita que GitHub Pages procese el sitio con Jekyll
 ```
 
-Los dos SVG de `assets/` no los carga el sitio: el export ya los trae embebidos.
-Estan ahi como fuente de verdad del escudo, y `instalar-portada.py` los usa.
+El sitio se edita directamente en `index.html`. No hay paso de compilación: se
+abre, se cambia y se sube. Todo el CSS va en un `<style>` al inicio del archivo,
+organizado por secciones con comentarios.
 
-## Actualizar el sitio institucional
+## Origen de los recursos
 
-Exporta el standalone desde Claude Design y corre:
+Las ilustraciones y las fotos salieron del diseño hecho en Claude Design
+(proyecto "Sitio Institucional RAV v3"). Las fotos venían como PNG de 3,2 y
+2,7 MB; aquí están como JPEG progresivo en dos tamaños (1600px y 800px), que es
+lo que sirve `srcset`. El sitio completo pesa 1,4 MB en vez de 8,1 MB.
 
-```bash
-python3 tools/instalar-portada.py "/mnt/c/Users/camil/Documents/proyecto educativo/Sitio Institucional RAV.html"
-git commit -am "Actualizar sitio institucional" && git push
-```
+El escudo es el mismo archivo que usa la plataforma: se verificó comparando la
+geometría de los 69 trazados.
 
-El script reaplica tres parches que el export trae siempre en su estado original:
+## Pendientes de contenido
 
-1. El enlace a la plataforma viene como `Plataforma RAV.dc.html` (ruta interna de
-   Claude Design) y debe ser `plataforma/index.html`.
-2. El logo del pie viene como un raster 270x100 que dice "PLATAFORMA EDUCATIVA";
-   se reemplaza por el escudo institucional fiel, vectorial y en blanco.
-3. El `<title>` viene como "Bundled Page".
+- Las tres noticias son de muestra y están marcadas como tales.
+- Teléfono y correo sin confirmar.
+- Las tarjetas de Oferta, Proyectos y Comunidad, y los tres accesos a
+  documentos, dicen "Próximamente": no hay páginas destino todavía. Cuando
+  existan, se convierten en enlaces.
+- Las dos fotos parecen generadas por IA. La de la sede muestra un edificio con
+  el nombre del colegio pintado que no es la sede real.
 
 ## Actualizar la plataforma
 
@@ -43,13 +51,5 @@ sed -i 's|<title>Bundled Page</title>|<title>Plataforma RAV</title>|' plataforma
 git commit -am "Actualizar plataforma" && git push
 ```
 
-## Notas
-
-La plataforma es un prototipo navegable: el ingreso no valida credenciales y trae
-una barra DEMO para cambiar de perfil. No debe cargarse con datos reales.
-
-El sitio institucional pesa ~8 MB porque embebe dos fotos en PNG de 3,1 y 2,7 MB.
-Funciona, pero conviene pasarlas a JPEG o WebP antes de difundirlo.
-
-Contenido pendiente de confirmar en el sitio: las tres noticias son de ejemplo, y
-el telefono y el correo estan marcados como "por confirmar".
+La plataforma es un prototipo navegable: el ingreso no valida credenciales y
+trae una barra DEMO para cambiar de perfil. No debe cargarse con datos reales.
