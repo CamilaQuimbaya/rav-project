@@ -28,9 +28,8 @@
   --line:rgba(23,54,83,.10);
   --wrap:1480px;
   --pad:clamp(24px,7vw,136px);
-  /* Un solo eje vertical: logo, menu, titular y encabezados de seccion
-     arrancan todos en --pad. --medida limita el ancho de lectura. */
-  --medida:1360px;
+  /* Un solo eje vertical: logo, menu, titular, encabezados de seccion y
+     rejillas arrancan todos en --pad y terminan a --pad del otro borde. */
   /* Ritmo vertical: una sola escala para todas las secciones. */
   --sect:clamp(60px,7.5vw,104px);
   --script:Caveat,"Segoe Script","Bradley Hand",cursive;
@@ -192,7 +191,7 @@ section[id],[id]{scroll-margin-top:84px}
 }
 
 /* ---------- Esencia: misión y visión ---------- */
-.esencia{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;max-width:var(--medida)}
+.esencia{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px}
 .card-e{
   background:var(--mint);border-radius:14px;padding:32px 34px;
   display:flex;gap:26px;align-items:flex-start;
@@ -216,7 +215,7 @@ section[id],[id]{scroll-margin-top:84px}
 .card-e__star{position:absolute;right:20px;top:18px;width:52px;pointer-events:none}
 
 /* ---------- Oferta ---------- */
-.oferta{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px;max-width:var(--medida)}
+.oferta{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px}
 .card-o{
   background:#fff;border:1px solid rgba(23,54,83,.08);border-radius:14px;
   padding:28px 28px 26px;display:flex;flex-direction:column;gap:14px;
@@ -271,7 +270,7 @@ section[id],[id]{scroll-margin-top:84px}
 .hist__note svg{display:block;width:100%;height:9px;margin-top:2px}
 
 /* ---------- Noticias ---------- */
-.noti{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px;max-width:var(--medida)}
+.noti{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px}
 .card-n{
   background:#fff;border:1px solid rgba(23,54,83,.08);border-radius:14px;
   overflow:hidden;display:flex;flex-direction:column;
@@ -290,11 +289,11 @@ section[id],[id]{scroll-margin-top:84px}
 .card-n h3{font-size:20px;line-height:1.25;text-wrap:pretty}
 .card-n p{font-size:16px;line-height:1.5;color:var(--ink-70);flex:1;text-wrap:pretty}
 .card-n a{font-size:14.5px;font-weight:700;margin-top:4px}
-.noti__top{display:flex;justify-content:flex-end;max-width:var(--medida);margin-bottom:14px}
+.noti__top{display:flex;justify-content:flex-end;margin-bottom:14px}
 .noti__top a{font-size:14.5px;font-weight:700}
 
 /* ---------- Accesos y contacto ---------- */
-.acc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:22px;max-width:var(--medida)}
+.acc{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,270px),1fr));gap:22px}
 .acc-i{
   display:flex;align-items:center;gap:16px;background:#fff;
   border:1px solid rgba(23,54,83,.08);border-radius:14px;padding:22px 24px;
@@ -311,7 +310,6 @@ a.acc-i:hover{border-color:var(--teal);color:var(--ink);transform:translateY(-2p
 .contacto{
   margin-top:26px;padding:26px 28px;border-radius:14px;background:var(--mint);
   display:flex;flex-wrap:wrap;gap:16px 34px;align-items:center;
-  max-width:var(--medida);
 }
 .contacto b{font-size:15.5px}
 .contacto p{font-size:15px;color:var(--ink-70)}
