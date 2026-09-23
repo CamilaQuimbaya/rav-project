@@ -108,6 +108,7 @@ section[id],[id]{scroll-margin-top:84px}
   display:flex;align-items:center;min-height:50px;color:var(--navy);
   font-size:17px;font-weight:700;border-bottom:1px solid rgba(23,54,83,.08);
 }
+#menu[hidden]{display:none}
 #menu a.sub{padding-left:18px;font-size:15px;font-weight:400}
 #menu .btn{margin-top:16px}
 
@@ -210,14 +211,12 @@ section[id],[id]{scroll-margin-top:84px}
 .card-o h3{font-size:18px}
 .card-o p{font-size:14.5px;line-height:1.6;color:var(--ink-70);flex:1;text-wrap:pretty}
 .card-o__go{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:700;color:var(--teal)}
-.card-o__go--pronto{color:var(--gold-d);background:var(--cream-d);border:1px dashed #C9A13E;border-radius:20px;padding:5px 12px;font-size:12px;letter-spacing:.06em;align-self:flex-start}
 .card-o__go i{
   width:38px;height:38px;border-radius:50%;background:var(--mint-l);
   display:flex;align-items:center;justify-content:center;font-style:normal;
   font-size:16px;color:var(--navy);transition:background .18s;
 }
-.card-o:hover .card-o__go--pronto{color:var(--gold-d);background:var(--cream-d);border:1px dashed #C9A13E;border-radius:20px;padding:5px 12px;font-size:12px;letter-spacing:.06em;align-self:flex-start}
-.card-o__go i{background:var(--gold)}
+.card-o:hover .card-o__go i{background:var(--gold)}
 
 /* ---------- Historia ---------- */
 .hist{padding-inline:clamp(12px,3vw,48px)}
@@ -242,10 +241,17 @@ section[id],[id]{scroll-margin-top:84px}
 .hist__b p{font-size:15.5px;line-height:1.7;color:rgba(255,255,255,.92);max-width:460px;text-wrap:pretty}
 .hist__leaf{position:absolute;left:10px;bottom:-14px;width:78px;opacity:.5;pointer-events:none;z-index:1}
 .hist__note{
-  font-family:var(--script);font-size:clamp(21px,1.9vw,27px);font-weight:600;
-  line-height:1.1;color:var(--gold);display:flex;flex-direction:column;gap:4px;
+  position:absolute;z-index:3;
+  right:clamp(20px,4vw,54px);bottom:clamp(26px,4vw,46px);
+  max-width:min(46%,330px);
+  font-family:var(--script);font-size:clamp(21px,1.9vw,28px);font-weight:600;
+  line-height:1.08;color:var(--navy);text-align:right;
+  transform:rotate(-6deg);transform-origin:100% 100%;
+  background:rgba(247,245,239,.62);border-radius:10px;padding:8px 14px;
+  transition:background .18s,transform .18s;
 }
-.hist__note svg{width:190px;height:9px}
+.hist__note:hover{background:rgba(247,245,239,.9);color:var(--navy);transform:rotate(-6deg) translateY(-2px)}
+.hist__note svg{display:block;width:100%;height:9px;margin-top:2px}
 
 /* ---------- Noticias ---------- */
 .noti{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px;padding-left:var(--inset)}
@@ -267,7 +273,7 @@ section[id],[id]{scroll-margin-top:84px}
 .card-n h3{font-size:17px;line-height:1.35;text-wrap:pretty}
 .card-n p{font-size:14.5px;line-height:1.6;color:var(--ink-70);flex:1;text-wrap:pretty}
 .card-n a{font-size:14.5px;font-weight:700;margin-top:4px}
-.noti__top{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-left:var(--inset);margin-bottom:18px}
+.noti__top{display:flex;justify-content:flex-end;padding-left:var(--inset);margin-bottom:14px}
 .noti__top a{font-size:14.5px;font-weight:700}
 
 /* ---------- Accesos y contacto ---------- */
@@ -277,8 +283,6 @@ section[id],[id]{scroll-margin-top:84px}
   border:1px solid rgba(23,54,83,.08);border-radius:14px;padding:22px 24px;
   color:var(--ink);min-height:92px;transition:border-color .18s,transform .18s;
 }
-.acc-i--pronto{opacity:.72}
-.acc-i--pronto small{color:var(--gold-d)}
 a.acc-i:hover{border-color:var(--teal);color:var(--ink);transform:translateY(-2px)}
 .acc-i i{
   width:46px;height:46px;border-radius:12px;background:var(--mint-l);color:var(--teal);
@@ -341,6 +345,12 @@ footer{background:var(--navy);color:#fff}
   .hist__ph{width:100%;opacity:.5}
   .hist__fade{background:linear-gradient(180deg,rgba(23,54,83,.82) 0%,rgba(23,54,83,.92) 100%)}
   .hist__b{max-width:none;padding-inline:clamp(24px,5vw,44px)}
+  .hist__note{
+    position:static;max-width:none;align-self:flex-start;text-align:left;
+    transform:rotate(-3deg);transform-origin:0 50%;
+    margin:4px 0 0 clamp(24px,5vw,44px);background:rgba(247,245,239,.9);
+  }
+  .hist__note:hover{transform:rotate(-3deg)}
 }
 @media (max-width:760px){
   .card-e{flex-direction:column;gap:16px;padding:26px 24px}
@@ -505,26 +515,26 @@ footer{background:var(--navy);color:#fff}
     </div>
     <div class="oferta">
 
-      <article class="card-o">
+      <a class="card-o card-o--link" href="#oferta">
         <img src="assets/oferta.svg" alt="" aria-hidden="true">
         <h3>Oferta educativa</h3>
         <p>Conoce nuestros niveles, del jardín a la media, y lo que cada etapa ofrece.</p>
-        <span class="card-o__go card-o__go--pronto">Próximamente</span>
-      </article>
+        <span class="card-o__go">Ver niveles <i aria-hidden="true">→</i></span>
+      </a>
 
-      <article class="card-o" id="proyectos">
+      <a class="card-o card-o--link" href="#proyectos" id="proyectos">
         <img src="assets/proyectos.svg" alt="" aria-hidden="true">
         <h3>Proyectos</h3>
         <p>PRAE, PILEO, competencias ciudadanas y convivencia escolar.</p>
-        <span class="card-o__go card-o__go--pronto">Próximamente</span>
-      </article>
+        <span class="card-o__go">Ver proyectos <i aria-hidden="true">→</i></span>
+      </a>
 
-      <article class="card-o">
+      <a class="card-o card-o--link" href="#contacto">
         <img src="assets/valores.svg" alt="" aria-hidden="true">
         <h3>Comunidad</h3>
         <p>Estudiantes, familias y docentes que hacen posible la institución.</p>
-        <span class="card-o__go card-o__go--pronto">Próximamente</span>
-      </article>
+        <span class="card-o__go">Conocer más <i aria-hidden="true">→</i></span>
+      </a>
 
     </div>
   </div>
@@ -546,11 +556,11 @@ footer{background:var(--navy);color:#fff}
       <h2 id="t-hist"><strong>Desde 1925,</strong> parte de la historia <strong>de Chiriguaná</strong></h2>
       <div class="rule"></div>
       <p>Iniciamos como Escuela Urbana de Niñas. Desde 2003 llevamos el nombre de Rafael Argote Vega, un docente que trabajó con los niños y jóvenes de la comunidad.</p>
-      <div class="hist__note">
-        Más de una historia, la historia de nuestra gente.
-        <svg viewBox="0 0 200 10" fill="none" aria-hidden="true" preserveAspectRatio="none"><path d="M2 7C50 2 130 1 198 4" stroke="#E5B653" stroke-width="2.6" stroke-linecap="round"/></svg>
-      </div>
     </div>
+    <a class="hist__note" href="#institucion">
+      Más de una historia,<br>la historia de nuestra gente.
+      <svg viewBox="0 0 200 10" fill="none" aria-hidden="true" preserveAspectRatio="none"><path d="M2 7C50 2 130 1 198 4" stroke="#E5B653" stroke-width="2.6" stroke-linecap="round"/></svg>
+    </a>
   </div>
 </section>
 
@@ -563,6 +573,9 @@ footer{background:var(--navy);color:#fff}
       <p>Conoce lo más reciente de nuestra vida institucional.</p>
       <span class="chip">CONTENIDO DE MUESTRA</span>
     </div>
+    <div class="noti__top">
+      <a href="#noticias">Ver todas las noticias →</a>
+    </div>
     <div class="noti">
 
       <article class="card-n">
@@ -574,6 +587,7 @@ footer{background:var(--navy);color:#fff}
           <p class="card-n__k">INSTITUCIONAL</p>
           <h3>Ejemplo: logro deportivo de nuestros estudiantes</h3>
           <p>Resumen breve de la noticia en una o dos líneas.</p>
+          <a href="#noticias">Leer más →</a>
         </div>
       </article>
 
@@ -586,6 +600,7 @@ footer{background:var(--navy);color:#fff}
           <p class="card-n__k">PROYECTOS</p>
           <h3>Ejemplo: jornada del Proyecto Ambiental Escolar</h3>
           <p>Qué se hizo, quiénes participaron y cuándo.</p>
+          <a href="#noticias">Leer más →</a>
         </div>
       </article>
 
@@ -598,6 +613,7 @@ footer{background:var(--navy);color:#fff}
           <p class="card-n__k">INSTITUCIONAL</p>
           <h3>Ejemplo: fortaleciendo competencias digitales</h3>
           <p>Resumen breve del avance o la actividad.</p>
+          <a href="#noticias">Leer más →</a>
         </div>
       </article>
 
@@ -615,20 +631,20 @@ footer{background:var(--navy);color:#fff}
     </div>
     <div class="acc">
 
-      <div class="acc-i acc-i--pronto">
+      <a class="acc-i" href="#documentos">
         <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></i>
-        <span><b>Manual de Convivencia</b><small>Próximamente</small></span>
-      </div>
+        <span><b>Manual de Convivencia</b><small>Documento en PDF</small></span>
+      </a>
 
-      <div class="acc-i acc-i--pronto">
+      <a class="acc-i" href="#documentos">
         <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-11A.5.5 0 0 1 6 20V4a.5.5 0 0 1 .5-.5z"/><path d="M14 3.5V8h4M9 13h6M9 16.5h4"/></svg></i>
-        <span><b>Documentos institucionales</b><small>Próximamente</small></span>
-      </div>
+        <span><b>Documentos institucionales</b><small>PEI, formatos y circulares</small></span>
+      </a>
 
-      <div class="acc-i acc-i--pronto">
+      <a class="acc-i" href="#documentos">
         <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></i>
-        <span><b>Sedes</b><small>Próximamente</small></span>
-      </div>
+        <span><b>Sedes</b><small>Dónde encontrarnos</small></span>
+      </a>
 
     </div>
 
