@@ -177,8 +177,8 @@ html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
 
 /* ---------- Portada ---------- */
 .hero{position:relative;background:var(--cream);overflow:hidden}
-.hero__ph{position:absolute;top:0;right:0;bottom:0;width:64%}
-.hero__ph img{width:100%;height:100%;object-fit:cover;display:block}
+.hero__ph{position:absolute;top:0;right:0;bottom:0;width:64%;overflow:hidden}
+.hero__ph img{width:100%;object-fit:cover;display:block}
 .hero__fade{
   position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(90deg,var(--cream) 0%,var(--cream) 36%,rgba(247,245,239,.85) 42%,rgba(247,245,239,0) 56%);
@@ -270,8 +270,8 @@ html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
   border-radius:14px;overflow:hidden;background:var(--navy);
   min-height:clamp(300px,34vw,400px);display:flex;align-items:center;
 }
-.hist__ph{position:absolute;top:0;right:0;bottom:0;width:56%}
-.hist__ph img{width:100%;height:100%;object-fit:cover;display:block}
+.hist__ph{position:absolute;top:0;right:0;bottom:0;width:56%;overflow:hidden}
+.hist__ph img{width:100%;object-fit:cover;display:block}
 .hist__fade{
   position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(90deg,var(--navy) 0%,var(--navy) 42%,rgba(23,54,83,.88) 54%,rgba(23,54,83,.35) 70%,rgba(23,54,83,.15) 100%);
@@ -507,6 +507,49 @@ footer{background:var(--navy);color:#fff}
   background:var(--mint);border-radius:999px;padding:6px 13px;
 }
 
+
+/* ---------- Transiciones entre secciones ----------
+   Las secciones con color flotan como placas redondeadas sobre el marfil.
+   Manual p.8: "priorizar espacios amplios, formas suaves". */
+.sect--blanco,.sect--menta,.sect--azul{border-radius:clamp(32px,4.5vw,80px)}
+.sect--menta{margin-top:clamp(14px,2vw,30px)}
+.sect--azul{position:relative}
+
+/* Hoja decorativa a caballo entre dos secciones */
+.costura{
+  position:absolute;right:clamp(20px,7vw,140px);top:0;
+  width:clamp(64px,7vw,116px);transform:translateY(-52%);
+  opacity:.5;pointer-events:none;z-index:2;
+}
+
+/* ---------- Barra de progreso de lectura ---------- */
+.prog{
+  position:fixed;top:0;left:0;right:0;height:3px;z-index:90;
+  background:var(--gold);transform:scaleX(0);transform-origin:0 50%;
+  pointer-events:none;
+}
+
+/* ---------- Aparicion al entrar en pantalla ---------- */
+.rev,.rg > *{
+  opacity:0;transform:translateY(22px);
+  transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);
+}
+.rev.vis,.rg.vis > *{opacity:1;transform:none}
+.rg.vis > *:nth-child(1){transition-delay:0ms}
+.rg.vis > *:nth-child(2){transition-delay:70ms}
+.rg.vis > *:nth-child(3){transition-delay:140ms}
+.rg.vis > *:nth-child(4){transition-delay:210ms}
+.rg.vis > *:nth-child(5){transition-delay:280ms}
+.rg.vis > *:nth-child(6){transition-delay:350ms}
+.rg.vis > *:nth-child(7){transition-delay:420ms}
+.rg.vis > *:nth-child(8){transition-delay:490ms}
+
+/* ---------- Parallax ----------
+   Las fotos se montan mas altas que su marco para que el desplazamiento
+   no descubra los bordes. */
+.hero__ph img,.hist__ph img{height:124%;top:-12%;position:absolute;left:0;will-change:transform}
+.hero__leaf{will-change:transform}
+
 /* ---------- Adaptación ---------- */
 @media (max-width:1100px){
   .nav,.head__cta,.head__sp{display:none}
@@ -560,6 +603,8 @@ footer{background:var(--navy);color:#fff}
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
   html{scroll-behavior:auto}
+  .rev,.rg > *{opacity:1!important;transform:none!important}
+  .prog{display:none}
 }
 </style>
 </head>
@@ -568,6 +613,8 @@ footer{background:var(--navy);color:#fff}
 <div class="intro" id="intro">
   <rav-logo></rav-logo>
 </div>
+
+<div class="prog" id="prog" aria-hidden="true"></div>
 
 <a class="skip" href="#contenido">Saltar al contenido</a>
 
@@ -807,6 +854,7 @@ footer{background:var(--navy);color:#fff}
 
 <!-- ---------- Historia ---------- -->
 <section class="sect sect--azul" id="institucion" aria-labelledby="t-hist">
+  <img class="costura" src="assets/ramas.svg" alt="" aria-hidden="true">
   <div class="hist">
     <div class="hist__box">
       <div class="hist__ph">
@@ -1082,6 +1130,7 @@ footer{background:var(--navy);color:#fff}
       cerrado = true;
       try { sessionStorage.setItem("rav-intro","1"); } catch(e){}
       raiz.classList.add("intro-fin");
+      raiz.dispatchEvent(new CustomEvent("intro-fin"));
       setTimeout(function(){ intro.remove(); }, 600);
     }
     intro.addEventListener("ravstate", function(e){
@@ -1158,6 +1207,84 @@ footer{background:var(--navy);color:#fff}
       var el = document.getElementById(id);
       if (el) obs.observe(el);
     });
+  }
+
+  // ---------------------------------------------------------------
+  //  Movimiento al hacer scroll: aparicion, parallax y progreso.
+  //  Todo con transform y opacity, dentro de requestAnimationFrame,
+  //  para no forzar recalculos de maquetacion en cada evento.
+  // ---------------------------------------------------------------
+  var MENOS_MOVIMIENTO = false;
+  try { MENOS_MOVIMIENTO = matchMedia("(prefers-reduced-motion: reduce)").matches; } catch(e){}
+
+  function iniciarMovimiento(){
+    if (MENOS_MOVIMIENTO) return;
+
+    // --- Aparicion al entrar en pantalla ---
+    var SOLOS = ".shead, .nota, .contacto, .promesa, .hist__b, .hist__box";
+    var GRUPOS = ".esencia, .valores, .niveles, .linea, .proyectos, .noti, .sedes, .acc";
+    Array.prototype.forEach.call(document.querySelectorAll(SOLOS), function(el){ el.classList.add("rev"); });
+    Array.prototype.forEach.call(document.querySelectorAll(GRUPOS), function(el){ el.classList.add("rg"); });
+
+    if ("IntersectionObserver" in window){
+      var ver = new IntersectionObserver(function(entradas){
+        entradas.forEach(function(e){
+          if (!e.isIntersecting) return;
+          e.target.classList.add("vis");
+          ver.unobserve(e.target);          // una sola vez: no reaparece al subir
+        });
+      }, { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
+      Array.prototype.forEach.call(document.querySelectorAll(".rev, .rg"), function(el){ ver.observe(el); });
+    } else {
+      Array.prototype.forEach.call(document.querySelectorAll(".rev, .rg"), function(el){ el.classList.add("vis"); });
+    }
+
+    // --- Parallax ---
+    var CAPAS = [];
+    function capa(sel, amplitud){
+      var el = document.querySelector(sel);
+      if (el) CAPAS.push({ el: el, amp: amplitud });
+    }
+    capa(".hero__ph img", -58);     // la foto sube mas despacio que la pagina
+    capa(".hero__leaf", 34);        // la hoja acompaña en sentido contrario
+    capa(".hist__ph img", -46);
+    capa(".costura", 26);
+
+    var prog = document.getElementById("prog");
+    var pendiente = false;
+
+    function pintar(){
+      pendiente = false;
+      var vh = window.innerHeight;
+
+      for (var i = 0; i < CAPAS.length; i++){
+        var c = CAPAS[i], r = c.el.getBoundingClientRect();
+        if (r.bottom < -240 || r.top > vh + 240) continue;   // fuera de vista: no tocar
+        var d = ((r.top + r.height / 2) - vh / 2) / vh;      // -1 arriba, +1 abajo
+        if (d < -1.4) d = -1.4; else if (d > 1.4) d = 1.4;
+        c.el.style.transform = "translate3d(0," + (d * c.amp).toFixed(1) + "px,0)";
+      }
+
+      if (prog){
+        var alto = document.documentElement.scrollHeight - vh;
+        var p = alto > 0 ? window.scrollY / alto : 0;
+        if (p < 0) p = 0; else if (p > 1) p = 1;
+        prog.style.transform = "scaleX(" + p.toFixed(4) + ")";
+      }
+    }
+    function pedir(){ if (!pendiente){ pendiente = true; requestAnimationFrame(pintar); } }
+
+    window.addEventListener("scroll", pedir, { passive: true });
+    window.addEventListener("resize", pedir);
+    pintar();
+  }
+
+  // Si hay intro, esperamos: si no, las secciones de arriba se revelarian
+  // detras del velo y al levantarlo ya estarian puestas.
+  if (raiz.hasAttribute("data-intro")) {
+    raiz.addEventListener("intro-fin", iniciarMovimiento, { once: true });
+  } else {
+    iniciarMovimiento();
   }
 })();
 </script>
