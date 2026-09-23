@@ -188,7 +188,7 @@ html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
 .hero__leaf{position:absolute;left:40%;bottom:-6px;width:128px;z-index:3;pointer-events:none}
 .hero__body{
   position:relative;z-index:5;max-width:none;margin:0;
-  padding:clamp(24px,3vw,40px) var(--pad) clamp(40px,5vw,64px);
+  padding:clamp(24px,3vw,40px) var(--pad) clamp(96px,11vw,190px);
   pointer-events:none;
 }
 .hero__col{
@@ -565,8 +565,10 @@ footer{background:var(--navy);color:#fff}
 .sep__a{fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke}
 .sep__anillo{
   position:absolute;right:clamp(24px,9vw,190px);bottom:0;
-  width:clamp(74px,8vw,132px);height:auto;transform:translateY(34%);
+  width:clamp(74px,8vw,132px);height:auto;transform:translateY(var(--ay,34%));
 }
+/* El hero recorta lo que se sale, asi que ahi el anillo se recoge. */
+.hero .sep{z-index:6;--ay:4%}
 /* La seccion reserva sitio abajo para que el texto no invada el separador */
 .sect--sep{padding-bottom:calc(var(--sect) + clamp(72px,8vw,148px))}
 
@@ -610,6 +612,7 @@ footer{background:var(--navy);color:#fff}
   .bar .btn{margin-left:auto}
   .hero__ph,.hero__fade,.hero__leaf{display:none}
   .hero__ph--m{display:block}
+  .hero__body{padding-bottom:clamp(40px,5vw,64px)}
   .hero__col{max-width:none;padding-left:0}
   .head__in{gap:16px}
   /* Por debajo de 280px de ancho la version con nombre no es valida (manual p.4),
@@ -760,6 +763,18 @@ footer{background:var(--navy);color:#fff}
          sizes="100vw" alt="Estudiantes y una docente leyendo juntos en el patio del colegio"
          width="800" height="450">
     <img class="hero__leaf" src="assets/hojas.svg" alt="" aria-hidden="true">
+  </div>
+
+  <div class="sep" aria-hidden="true" style="--sep:#fff">
+    <svg viewBox="0 0 1440 148" preserveAspectRatio="none">
+      <path class="sep__f" d="M0 104C300 34 1140 34 1440 104L1440 148L0 148Z"/>
+      <path class="sep__a" d="M0 82C300 12 1140 12 1440 82" stroke="#178C91" stroke-width="14" opacity=".22"/>
+      <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".17"/>
+      <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".34"/>
+    </svg>
+    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".3"/>
+    </svg>
   </div>
 </section>
 
@@ -1437,8 +1452,9 @@ footer{background:var(--navy);color:#fff}
     }
     function capas(sel, amplitud){
       Array.prototype.forEach.call(document.querySelectorAll(sel), function(el, i){
-        // signos alternos: unos anillos suben y otros bajan
-        CAPAS.push({ el: el, amp: (i % 2 ? -1 : 1) * amplitud, base: "translateY(34%) " });
+        // signos alternos: unos anillos suben y otros bajan.
+        // La base va como variable CSS para no pisar el ajuste de cada sitio.
+        CAPAS.push({ el: el, amp: (i % 2 ? -1 : 1) * amplitud, base: "translateY(var(--ay,34%)) " });
       });
     }
     capa(".hero__ph img", -58);     // la foto sube mas despacio que la pagina
