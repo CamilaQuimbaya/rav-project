@@ -1465,13 +1465,6 @@ footer{background:var(--navy);color:#fff}
       var el = document.querySelector(sel);
       if (el) CAPAS.push({ el: el, amp: amplitud });
     }
-    function capas(sel, amplitud){
-      Array.prototype.forEach.call(document.querySelectorAll(sel), function(el, i){
-        // signos alternos: unos anillos suben y otros bajan.
-        // La base va como variable CSS para no pisar el ajuste de cada sitio.
-        CAPAS.push({ el: el, amp: (i % 2 ? -1 : 1) * amplitud, base: "translateY(var(--ay,34%)) " });
-      });
-    }
     capa(".hero__ph img", -58);     // la foto sube mas despacio que la pagina
     capa(".hero__leaf", 34);        // la hoja acompaña en sentido contrario
     capa(".hist__ph img", -46);
