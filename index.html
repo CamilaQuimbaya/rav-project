@@ -9,6 +9,21 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Work+Sans:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<script>
+/* Decide antes del primer pintado si toca intro, para que no parpadee el sitio.
+   No se muestra si el visitante pide reducir movimiento ni si ya la vio en
+   esta sesion. El JS del logo solo se descarga cuando de verdad se va a usar. */
+(function(){
+  try{
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if(sessionStorage.getItem('rav-intro')) return;
+  }catch(e){ /* modo privado: se muestra igual */ }
+  document.documentElement.setAttribute('data-intro','');
+  var e=document.createElement('script');
+  e.src='assets/rav-logo.js';
+  document.head.appendChild(e);
+})();
+</script>
 <style>
 :root{
   --navy:#173653;
@@ -56,6 +71,27 @@ p{margin:0}
 .wrap{max-width:none;margin:0;padding-inline:var(--pad)}
 /* Todo destino de ancla despeja la barra fija. */
 section[id],[id]{scroll-margin-top:84px}
+
+/* ---------- Intro ---------- */
+.intro{display:none}
+html[data-intro] .intro{
+  display:flex;position:fixed;inset:0;z-index:100;
+  flex-direction:column;align-items:center;justify-content:center;gap:40px;
+  background:var(--cream);
+  padding:var(--pad);
+  transition:opacity .5s ease;
+}
+html[data-intro]{overflow:hidden}
+html[data-intro].intro-fin{overflow:auto}
+html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
+.intro rav-logo{width:min(520px,78vw);display:block}
+.intro__saltar{
+  border:1.5px solid rgba(23,54,83,.3);background:transparent;color:var(--ink-70);
+  font-family:var(--sans);font-size:14px;font-weight:600;
+  padding:10px 22px;border-radius:999px;cursor:pointer;min-height:44px;
+  transition:border-color .18s,color .18s;
+}
+.intro__saltar:hover{border-color:var(--navy);color:var(--navy)}
 
 .skip{
   position:absolute;left:12px;top:-60px;z-index:80;
@@ -396,6 +432,11 @@ footer{background:var(--navy);color:#fff}
 </head>
 <body>
 
+<div class="intro" id="intro">
+  <rav-logo></rav-logo>
+  <button class="intro__saltar" id="intro-saltar">Saltar animación</button>
+</div>
+
 <a class="skip" href="#contenido">Saltar al contenido</a>
 
 <!-- Barra compacta: aparece al dejar atrás la portada -->
@@ -713,6 +754,28 @@ footer{background:var(--navy);color:#fff}
 <script>
 (function(){
   "use strict";
+
+  // --- Intro: se cierra cuando la animacion termina, o a los 4 s por si acaso ---
+  var raiz = document.documentElement;
+  if (raiz.hasAttribute("data-intro")) {
+    var intro = document.getElementById("intro");
+    var cerrado = false;
+    function cerrarIntro(){
+      if (cerrado) return;
+      cerrado = true;
+      try { sessionStorage.setItem("rav-intro","1"); } catch(e){}
+      raiz.classList.add("intro-fin");
+      setTimeout(function(){ intro.remove(); }, 600);
+    }
+    intro.addEventListener("ravstate", function(e){
+      if (e.detail && e.detail.done) setTimeout(cerrarIntro, 450);
+    });
+    document.getElementById("intro-saltar").addEventListener("click", cerrarIntro);
+    document.addEventListener("keydown", function(e){
+      if (e.key === "Escape" || e.key === "Enter" || e.key === " ") cerrarIntro();
+    });
+    setTimeout(cerrarIntro, 4000);   // red de seguridad si el componente no carga
+  }
 
   // --- Menú móvil ---
   var burger = document.getElementById("burger");

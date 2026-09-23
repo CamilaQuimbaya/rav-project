@@ -14,6 +14,7 @@ assets/
   logo-nombre-blanco.svg      la misma, blanca, para fondos azules
   escudo.svg                  escudo solo, en color
   escudo-blanco.svg           escudo solo, blanco, para fondos azules
+  rav-logo.js                 <rav-logo> animado, usado en la intro
   comunidad-1600/800.jpg      foto de portada
   sede-1600/800.jpg           foto de la franja de historia
   hojas / estrellas / mision-libro / vision-meta /
@@ -64,6 +65,24 @@ Decisiones que vienen de ahí y conviene no deshacer sin releerlo:
 
 Caveat, la manuscrita del lema, no está en el manual: viene del diseño original
 y se conservó a propósito.
+
+## Intro animada
+
+Al entrar se muestra una vez por sesión el logo animándose (`<rav-logo>`, 2,8 s),
+y luego aparece el sitio. El componente viene del diseño "Logo RAV Animado" y no
+tiene dependencias; dibuja el escudo, el nombre y "Chiriguaná · Cesar", sin el
+bajante "PLATAFORMA EDUCATIVA".
+
+Se decide antes del primer pintado, en un script en el `<head>`, para que el
+sitio no parpadee. No se muestra si el visitante pide reducir movimiento, ni en
+la segunda carga de la misma sesión — y en esos casos tampoco se descargan los
+64 KB del componente. Si el componente no carga, la intro se cierra sola a los
+4 segundos. Sin JavaScript no aparece y el sitio funciona igual.
+
+Para quitarla: borrar el bloque `.intro` del CSS, el `<div class="intro">` del
+HTML, el script del `<head>` y el bloque de la intro en el script del final.
+
+La pantalla de carga de la plataforma es otra cosa y no se toca.
 
 ## Pendientes de contenido
 
