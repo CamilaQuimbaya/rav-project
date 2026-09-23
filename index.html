@@ -548,19 +548,27 @@ footer{background:var(--navy);color:#fff}
 }
 
 
-/* ---------- Transiciones entre secciones ----------
-   Las secciones con color flotan como placas redondeadas sobre el marfil.
-   Manual p.8: "priorizar espacios amplios, formas suaves". */
-.sect--blanco,.sect--menta,.sect--azul{border-radius:clamp(32px,4.5vw,80px)}
-.sect--menta{margin-top:clamp(14px,2vw,30px)}
-.sect--azul{position:relative}
-
-/* Hoja decorativa a caballo entre dos secciones */
-.costura{
-  position:absolute;right:clamp(20px,7vw,140px);top:0;
-  width:clamp(64px,7vw,116px);transform:translateY(-52%);
-  opacity:.5;pointer-events:none;z-index:2;
+/* ---------- Separadores de seccion ----------
+   Mismo grafismo que el fondo del login de la plataforma: arcos concentricos
+   de grosor decreciente en turquesa y dorado, remates redondeados, y un
+   anillo suelto. Aqui el arco ademas hace de borde entre una seccion y la
+   siguiente, en vez de la linea recta. */
+.sect{position:relative}
+.sep{
+  position:absolute;left:0;right:0;bottom:0;z-index:1;
+  height:clamp(72px,8vw,148px);pointer-events:none;
 }
+.sep > svg{display:block;width:100%;height:100%}
+.sep__f{fill:var(--sep)}
+/* preserveAspectRatio="none" estira el dibujo a lo ancho de la pantalla; sin
+   non-scaling-stroke los trazos se deformarian con el. */
+.sep__a{fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke}
+.sep__anillo{
+  position:absolute;right:clamp(24px,9vw,190px);bottom:0;
+  width:clamp(74px,8vw,132px);height:auto;transform:translateY(34%);
+}
+/* La seccion reserva sitio abajo para que el texto no invada el separador */
+.sect--sep{padding-bottom:calc(var(--sect) + clamp(72px,8vw,148px))}
 
 /* ---------- Barra de progreso de lectura ---------- */
 .prog{
@@ -756,7 +764,7 @@ footer{background:var(--navy);color:#fff}
 </section>
 
 <!-- ---------- Esencia ---------- -->
-<section class="sect sect--blanco" id="mision" aria-labelledby="t-esencia">
+<section class="sect sect--blanco sect--sep" id="mision" aria-labelledby="t-esencia">
   <div class="wrap">
     <div class="shead">
       <h2 id="t-esencia">Nuestra esencia</h2>
@@ -845,10 +853,22 @@ footer{background:var(--navy);color:#fff}
       </div>
     </div>
   </div>
+
+  <div class="sep" aria-hidden="true" style="--sep:var(--cream)">
+    <svg viewBox="0 0 1440 148" preserveAspectRatio="none">
+      <path class="sep__f" d="M0 104C300 34 1140 34 1440 104L1440 148L0 148Z"/>
+      <path class="sep__a" d="M0 82C300 12 1140 12 1440 82" stroke="#178C91" stroke-width="14" opacity=".20"/>
+      <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".15"/>
+      <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".32"/>
+    </svg>
+    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".26"/>
+    </svg>
+  </div>
 </section>
 
 <!-- ---------- Oferta ---------- -->
-<section class="sect" id="oferta" aria-labelledby="t-oferta">
+<section class="sect sect--sep" id="oferta" aria-labelledby="t-oferta">
   <div class="wrap">
     <div class="shead">
       <h2 id="t-oferta">Del jardín a once</h2>
@@ -894,11 +914,22 @@ footer{background:var(--navy);color:#fff}
     </div>
     <p class="nota">La sede principal ofrece jornada única en básica secundaria y media. Las sedes de preescolar y primaria funcionan en jornada de la mañana, salvo la Sede N.º 5, que atiende en jornada única de jardín a quinto.</p>
   </div>
+
+  <div class="sep" aria-hidden="true" style="--sep:var(--navy)">
+    <svg viewBox="0 0 1440 148" preserveAspectRatio="none">
+      <path class="sep__f" d="M0 104C300 34 1140 34 1440 104L1440 148L0 148Z"/>
+      <path class="sep__a" d="M0 82C300 12 1140 12 1440 82" stroke="#178C91" stroke-width="14" opacity=".20"/>
+      <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".15"/>
+      <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".32"/>
+    </svg>
+    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".26"/>
+    </svg>
+  </div>
 </section>
 
 <!-- ---------- Historia ---------- -->
-<section class="sect sect--azul" id="institucion" aria-labelledby="t-hist">
-  <img class="costura" src="assets/ramas.svg" alt="" aria-hidden="true">
+<section class="sect sect--azul sect--sep" id="institucion" aria-labelledby="t-hist">
   <div class="hist">
     <div class="hist__box">
       <div class="hist__ph">
@@ -997,10 +1028,22 @@ footer{background:var(--navy);color:#fff}
       </div>
     </div>
   </div>
+
+  <div class="sep" aria-hidden="true" style="--sep:var(--mint)">
+    <svg viewBox="0 0 1440 148" preserveAspectRatio="none">
+      <path class="sep__f" d="M0 104C300 34 1140 34 1440 104L1440 148L0 148Z"/>
+      <path class="sep__a" d="M0 82C300 12 1140 12 1440 82" stroke="#178C91" stroke-width="14" opacity=".20"/>
+      <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".30"/>
+      <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".45"/>
+    </svg>
+    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".38"/>
+    </svg>
+  </div>
 </section>
 
 <!-- ---------- Proyectos ---------- -->
-<section class="sect sect--menta" id="proyectos" aria-labelledby="t-proy">
+<section class="sect sect--menta sect--sep" id="proyectos" aria-labelledby="t-proy">
   <div class="wrap">
     <div class="shead">
       <h2 id="t-proy">Proyectos transversales</h2>
@@ -1039,10 +1082,22 @@ footer{background:var(--navy);color:#fff}
     </div>
     <p class="nota">Los estudiantes de 10.º y 11.º cumplen además 100 horas de servicio social obligatorio, apoyando actividades académicas, deportivas y culturales de la institución.</p>
   </div>
+
+  <div class="sep" aria-hidden="true" style="--sep:#fff">
+    <svg viewBox="0 0 1440 148" preserveAspectRatio="none">
+      <path class="sep__f" d="M0 104C300 34 1140 34 1440 104L1440 148L0 148Z"/>
+      <path class="sep__a" d="M0 82C300 12 1140 12 1440 82" stroke="#178C91" stroke-width="14" opacity=".20"/>
+      <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".15"/>
+      <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".32"/>
+    </svg>
+    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".26"/>
+    </svg>
+  </div>
 </section>
 
 <!-- ---------- Noticias ---------- -->
-<section class="sect sect--blanco" id="noticias" aria-labelledby="t-noti">
+<section class="sect sect--blanco sect--sep" id="noticias" aria-labelledby="t-noti">
   <div class="wrap">
     <div class="shead">
       <h2 id="t-noti">Noticias</h2>
@@ -1096,10 +1151,22 @@ footer{background:var(--navy);color:#fff}
 
     </div>
   </div>
+
+  <div class="sep" aria-hidden="true" style="--sep:var(--cream)">
+    <svg viewBox="0 0 1440 148" preserveAspectRatio="none">
+      <path class="sep__f" d="M0 104C300 34 1140 34 1440 104L1440 148L0 148Z"/>
+      <path class="sep__a" d="M0 82C300 12 1140 12 1440 82" stroke="#178C91" stroke-width="14" opacity=".20"/>
+      <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".15"/>
+      <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".32"/>
+    </svg>
+    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".26"/>
+    </svg>
+  </div>
 </section>
 
 <!-- ---------- Sedes y contacto ---------- -->
-<section class="sect" id="documentos" aria-labelledby="t-sedes">
+<section class="sect sect--sep" id="documentos" aria-labelledby="t-sedes">
   <div class="wrap">
     <div class="shead">
       <h2 id="t-sedes">Dónde encontrarnos</h2>
@@ -1164,6 +1231,18 @@ footer{background:var(--navy);color:#fff}
       <span><b>Sede principal</b><br><span style="font-size:15px;color:var(--ink-70)">Calle 8 con carrera 1, Chiriguaná, Cesar</span></span>
       <span class="chip">TELÉFONO Y CORREO POR CONFIRMAR</span>
     </div>
+  </div>
+
+  <div class="sep" aria-hidden="true" style="--sep:var(--navy)">
+    <svg viewBox="0 0 1440 148" preserveAspectRatio="none">
+      <path class="sep__f" d="M0 104C300 34 1140 34 1440 104L1440 148L0 148Z"/>
+      <path class="sep__a" d="M0 82C300 12 1140 12 1440 82" stroke="#178C91" stroke-width="14" opacity=".20"/>
+      <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".15"/>
+      <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".32"/>
+    </svg>
+    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
+      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".26"/>
+    </svg>
   </div>
 </section>
 
@@ -1356,10 +1435,16 @@ footer{background:var(--navy);color:#fff}
       var el = document.querySelector(sel);
       if (el) CAPAS.push({ el: el, amp: amplitud });
     }
+    function capas(sel, amplitud){
+      Array.prototype.forEach.call(document.querySelectorAll(sel), function(el, i){
+        // signos alternos: unos anillos suben y otros bajan
+        CAPAS.push({ el: el, amp: (i % 2 ? -1 : 1) * amplitud, base: "translateY(34%) " });
+      });
+    }
     capa(".hero__ph img", -58);     // la foto sube mas despacio que la pagina
     capa(".hero__leaf", 34);        // la hoja acompaña en sentido contrario
     capa(".hist__ph img", -46);
-    capa(".costura", 26);
+    capas(".sep__anillo", 22);
 
     var prog = document.getElementById("prog");
     var pendiente = false;
@@ -1373,7 +1458,7 @@ footer{background:var(--navy);color:#fff}
         if (r.bottom < -240 || r.top > vh + 240) continue;   // fuera de vista: no tocar
         var d = ((r.top + r.height / 2) - vh / 2) / vh;      // -1 arriba, +1 abajo
         if (d < -1.4) d = -1.4; else if (d > 1.4) d = 1.4;
-        c.el.style.transform = "translate3d(0," + (d * c.amp).toFixed(1) + "px,0)";
+        c.el.style.transform = (c.base || "") + "translate3d(0," + (d * c.amp).toFixed(1) + "px,0)";
       }
 
       if (prog){
