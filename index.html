@@ -581,15 +581,10 @@ footer{background:var(--navy);color:#fff}
 /* preserveAspectRatio="none" estira el dibujo a lo ancho de la pantalla; sin
    non-scaling-stroke los trazos se deformarian con el. */
 .sep__a{fill:none;stroke-linecap:round;vector-effect:non-scaling-stroke}
-.sep__anillo{
-  position:absolute;right:clamp(24px,9vw,190px);bottom:0;
-  width:clamp(74px,8vw,132px);height:auto;transform:translateY(var(--ay,34%));
-}
 /* En la portada el separador va en dos capas con la hoja en medio:
-   arcos y anillo detras (5), hoja (6), relleno delante (7). El relleno es
-   el que corta la base de la hoja, asi parece que brota de la curva.
-   Ademas el hero recorta lo que se sale, por eso el anillo se recoge. */
-.hero .sep{z-index:5;--ay:4%}
+   arcos detras (5), hoja (6), relleno delante (7). El relleno es el que
+   corta la base de la hoja, asi parece que brota de la curva. */
+.hero .sep{z-index:5}
 .hero .sep--frente{z-index:7}
 /* La seccion reserva sitio abajo para que el texto no invada el separador */
 .sect--sep{padding-bottom:calc(var(--sect) + clamp(72px,8vw,148px))}
@@ -807,9 +802,6 @@ footer{background:var(--navy);color:#fff}
       <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".17"/>
       <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".34"/>
     </svg>
-    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
-      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".3"/>
-    </svg>
   </div>
   <!-- Delante de la hoja: el relleno, que es quien la corta -->
   <div class="sep sep--frente" aria-hidden="true" style="--sep:#fff">
@@ -917,9 +909,6 @@ footer{background:var(--navy);color:#fff}
       <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".15"/>
       <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".32"/>
     </svg>
-    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
-      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".26"/>
-    </svg>
   </div>
 </section>
 
@@ -977,9 +966,6 @@ footer{background:var(--navy);color:#fff}
       <path class="sep__a" d="M0 82C300 12 1140 12 1440 82" stroke="#178C91" stroke-width="14" opacity=".20"/>
       <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".15"/>
       <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".32"/>
-    </svg>
-    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
-      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".26"/>
     </svg>
   </div>
 </section>
@@ -1092,9 +1078,6 @@ footer{background:var(--navy);color:#fff}
       <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".30"/>
       <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".45"/>
     </svg>
-    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
-      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".38"/>
-    </svg>
   </div>
 </section>
 
@@ -1145,9 +1128,6 @@ footer{background:var(--navy);color:#fff}
       <path class="sep__a" d="M0 82C300 12 1140 12 1440 82" stroke="#178C91" stroke-width="14" opacity=".20"/>
       <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".15"/>
       <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".32"/>
-    </svg>
-    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
-      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".26"/>
     </svg>
   </div>
 </section>
@@ -1214,9 +1194,6 @@ footer{background:var(--navy);color:#fff}
       <path class="sep__a" d="M0 82C300 12 1140 12 1440 82" stroke="#178C91" stroke-width="14" opacity=".20"/>
       <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".15"/>
       <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".32"/>
-    </svg>
-    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
-      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".26"/>
     </svg>
   </div>
 </section>
@@ -1295,9 +1272,6 @@ footer{background:var(--navy);color:#fff}
       <path class="sep__a" d="M0 82C300 12 1140 12 1440 82" stroke="#178C91" stroke-width="14" opacity=".20"/>
       <path class="sep__a" d="M0 64C324 -8 1116 -8 1440 64" stroke="#178C91" stroke-width="8" opacity=".15"/>
       <path class="sep__a" d="M0 48C348 -26 1092 -26 1440 48" stroke="#E5B653" stroke-width="5" opacity=".32"/>
-    </svg>
-    <svg class="sep__anillo" viewBox="0 0 120 120" fill="none">
-      <circle cx="60" cy="60" r="46" stroke="#178C91" stroke-width="6" opacity=".26"/>
     </svg>
   </div>
 </section>
@@ -1501,7 +1475,6 @@ footer{background:var(--navy);color:#fff}
     capa(".hero__ph img", -58);     // la foto sube mas despacio que la pagina
     capa(".hero__leaf", 34);        // la hoja acompaña en sentido contrario
     capa(".hist__ph img", -46);
-    capas(".sep__anillo", 22);
 
     var prog = document.getElementById("prog");
     var pendiente = false;
