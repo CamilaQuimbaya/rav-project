@@ -10,6 +10,8 @@ Publicado en: https://camilaquimbaya.github.io/rav-project/
 index.html                    sitio institucional, HTML y CSS a mano
 assets/
   logo-rav.svg                composicion maestra (escudo + nombre + descriptor)
+  logo-nombre.svg             escudo + nombre, sin descriptor ni ubicacion
+  logo-nombre-blanco.svg      la misma, blanca, para fondos azules
   escudo.svg                  escudo solo, en color
   escudo-blanco.svg           escudo solo, blanco, para fondos azules
   comunidad-1600/800.jpg      foto de portada
@@ -39,12 +41,15 @@ geometría de los 69 trazados.
 El sitio sigue el Manual de Marca RAV v1.0 (septiembre 2026), opción escudo.
 Decisiones que vienen de ahí y conviene no deshacer sin releerlo:
 
-- **Escudo solo, no la composición completa.** El manual pide 400 px de ancho
-  mínimo para la versión con nombre y descriptor (p.4). En un encabezado web no
-  caben, así que se usa la variante "escudo / avatar e icono", en sus tres
-  tamaños documentados: 96 px en el pie, 72 px en el encabezado, 56 px en la
-  barra flotante. El escudo solo tampoco arrastra el bajante "PLATAFORMA
-  EDUCATIVA", que identifica a la plataforma y no al colegio (p.2).
+- **Versión "nombre + símbolo", no la composición completa.** El manual pide
+  400 px de ancho para la versión con descriptor y ubicación, que en un
+  encabezado web no caben. Se usa la versión reducida documentada en la p.4
+  (escudo + nombre, sin descriptor ni ubicación), cuyo mínimo es 280 px; aquí va
+  a 300 px en el encabezado y en el pie. De paso no arrastra el bajante
+  "PLATAFORMA EDUCATIVA", que identifica a la plataforma y no al colegio (p.2).
+- **Escudo solo** donde no caben esos 280 px: la barra flotante (56 px), el
+  encabezado y el pie por debajo de 1100 px, y el favicon. Son los tamaños
+  documentados para "escudo / avatar e icono" (96 · 56 · 32 px).
 - **Área de protección** de 1/4 del ancho del escudo, como padding del enlace.
 - **Turquesa.** `#178C91` es el color de marca y se usa en superficies y
   trazos. Para texto, y para fondos que llevan texto blanco, va `#0F6E72`: el

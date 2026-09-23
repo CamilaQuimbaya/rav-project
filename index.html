@@ -87,7 +87,8 @@ section[id],[id]{scroll-margin-top:84px}
 .head__logo{flex:none;pointer-events:auto;display:block}
 /* Manual p.4: area de proteccion x = 1/4 del ancho del escudo. */
 .head__logo{padding:14px}
-.head__logo img{height:72px;width:auto;display:block}
+.head__logo .lg-full{width:300px;height:auto;display:block}
+.head__logo .lg-mark{display:none;height:64px;width:auto}
 .nav{display:flex;align-items:center;gap:6px;margin-left:clamp(10px,3vw,60px);pointer-events:auto}
 .nav a{
   color:var(--navy);font-size:14.5px;padding:10px 12px;
@@ -313,7 +314,8 @@ footer{background:var(--navy);color:#fff}
   display:flex;align-items:center;gap:26px 34px;flex-wrap:wrap;
 }
 .foot__logo{padding:24px}
-.foot__logo img{height:96px;width:auto;display:block}
+.foot__logo .lg-full{width:300px;height:auto;display:block}
+.foot__logo .lg-mark{display:none;height:80px;width:auto}
 .foot nav{display:flex;flex-wrap:wrap;align-items:center;flex:1 1 480px;justify-content:center;gap:2px}
 .foot nav a{color:#fff;font-size:13px;padding:8px 18px;white-space:nowrap;border-left:1px solid rgba(255,255,255,.3)}
 .foot nav a:first-child{border-left:0}
@@ -348,7 +350,11 @@ footer{background:var(--navy);color:#fff}
   .hero__ph--m{display:block}
   .hero__col{max-width:none;padding-left:0}
   .head__in{gap:16px}
-  .head__logo img{height:64px}
+  /* Por debajo de 280px de ancho la version con nombre no es valida (manual p.4),
+     asi que en pantallas angostas se usa el escudo solo. */
+  .head__logo .lg-full,.foot__logo .lg-full{display:none}
+  .head__logo .lg-mark,.foot__logo .lg-mark{display:block}
+  .head__logo{padding:10px}
   .shead,.esencia,.oferta,.noti,.acc,.noti__top,.contacto{padding-left:0;margin-left:0}
   .hist__ph{width:100%;opacity:.5}
   .hist__fade{background:linear-gradient(180deg,rgba(23,54,83,.82) 0%,rgba(23,54,83,.92) 100%)}
@@ -412,7 +418,8 @@ footer{background:var(--navy);color:#fff}
   <header class="head">
     <div class="head__in">
       <a class="head__logo" href="#inicio" aria-label="Rafael Argote Vega, inicio">
-        <img src="assets/escudo.svg" alt="Rafael Argote Vega" width="56" height="72">
+        <img class="lg-full" src="assets/logo-nombre.svg" alt="" width="300" height="117">
+        <img class="lg-mark" src="assets/escudo.svg" alt="" width="50" height="64">
       </a>
       <nav class="nav" aria-label="Principal">
         <a href="#inicio" aria-current="page">Inicio<span></span></a>
@@ -666,7 +673,8 @@ footer{background:var(--navy);color:#fff}
 <footer>
   <div class="foot">
     <a class="foot__logo" href="#inicio" aria-label="Rafael Argote Vega, volver al inicio">
-      <img src="assets/escudo-blanco.svg" alt="Rafael Argote Vega" width="75" height="96">
+      <img class="lg-full" src="assets/logo-nombre-blanco.svg" alt="" width="300" height="117">
+      <img class="lg-mark" src="assets/escudo-blanco.svg" alt="" width="63" height="80">
     </a>
     <nav aria-label="Pie de página">
       <a href="#inicio">Inicio</a>
