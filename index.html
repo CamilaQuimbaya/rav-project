@@ -376,6 +376,88 @@ footer{background:var(--navy);color:#fff}
   font-size:12.5px;color:rgba(255,255,255,.62);
 }
 
+
+/* ---------- Fondos por seccion ----------
+   Manual p.6: marfil domina, azul da estructura, turquesa acompana,
+   dorado solo en acentos (nunca como fondo de seccion). */
+.sect--blanco{background:#fff}
+.sect--menta{background:var(--mint)}
+.sect--azul{background:var(--navy);color:#fff}
+.sect--azul .shead h2{color:#fff}
+.sect--azul .shead p{color:rgba(255,255,255,.8)}
+
+/* ---------- Valores ---------- */
+.valores{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));
+  gap:30px 34px;margin-top:clamp(44px,5vw,68px);
+}
+.valor{display:flex;flex-direction:column;gap:8px;padding-top:18px;border-top:2px solid var(--gold)}
+.valor h3{font-size:19px}
+.valor p{font-size:15px;line-height:1.55;color:var(--ink-70);text-wrap:pretty}
+
+/* ---------- Niveles ---------- */
+.niveles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:20px}
+.nivel{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:28px 26px;display:flex;flex-direction:column;gap:11px;
+  transition:border-color .18s,box-shadow .18s,transform .18s;
+}
+.nivel:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:0 14px 32px rgba(23,54,83,.09)}
+.nivel__n{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.14em;color:var(--teal-ink)}
+.nivel h3{font-size:20px;line-height:1.25}
+.nivel__g{
+  align-self:flex-start;font-size:13px;font-weight:600;color:var(--gold-d);
+  background:var(--cream-d);border-radius:999px;padding:5px 13px;
+}
+.nivel p{font-size:15px;line-height:1.5;color:var(--ink-70);text-wrap:pretty}
+.nota{
+  margin-top:26px;font-size:15px;line-height:1.55;color:var(--ink-70);
+  padding-left:16px;border-left:2px solid var(--gold);max-width:70ch;
+}
+
+/* ---------- Linea de tiempo ---------- */
+.linea{
+  margin-top:clamp(46px,5vw,76px);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));
+  gap:34px 26px;
+}
+.hito{position:relative;padding-top:32px;padding-right:18px}
+.hito::before{content:"";position:absolute;left:0;right:0;top:5px;height:2px;background:rgba(229,182,83,.28)}
+.hito::after{content:"";position:absolute;left:0;top:0;width:12px;height:12px;border-radius:50%;background:var(--gold)}
+.hito b{display:block;font-family:var(--display);font-size:25px;font-weight:600;color:var(--gold);margin-bottom:9px}
+.hito p{font-size:15px;line-height:1.5;color:rgba(255,255,255,.85);text-wrap:pretty}
+
+/* ---------- Proyectos ---------- */
+.proyectos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:18px}
+.proy{
+  background:#fff;border-radius:14px;padding:26px 28px;
+  display:flex;align-items:flex-start;gap:17px;
+  transition:transform .18s,box-shadow .18s;
+}
+.proy:hover{transform:translateY(-3px);box-shadow:0 14px 32px rgba(23,54,83,.08)}
+.proy i{
+  width:46px;height:46px;border-radius:12px;background:var(--mint-l);color:var(--teal-ink);
+  display:flex;align-items:center;justify-content:center;flex:none;
+}
+.proy svg{width:23px;height:23px}
+.proy b{display:block;font-family:var(--display);font-size:17px;font-weight:600;margin-bottom:5px;line-height:1.3}
+.proy span{font-size:14.5px;line-height:1.5;color:var(--ink-70)}
+
+/* ---------- Sedes ---------- */
+.sedes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px}
+.sede{
+  background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:28px 26px;display:flex;flex-direction:column;gap:11px;
+}
+.sede__k{font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.14em;color:var(--teal-ink)}
+.sede h3{font-size:19px;line-height:1.25}
+.sede p{font-size:15px;line-height:1.55;color:var(--ink-70);text-wrap:pretty}
+.sede__j{
+  align-self:flex-start;margin-top:auto;padding-top:6px;
+  font-size:13px;font-weight:600;color:var(--teal-ink);
+  background:var(--mint);border-radius:999px;padding:6px 13px;
+}
+
 /* ---------- Adaptación ---------- */
 @media (max-width:1100px){
   .nav,.head__cta,.head__sp{display:none}
@@ -391,7 +473,7 @@ footer{background:var(--navy);color:#fff}
   .head__logo .lg-full,.foot__logo .lg-full{display:none}
   .head__logo .lg-mark,.foot__logo .lg-mark{display:block}
   .head__logo{padding:13px 13px 13px 0}
-  .shead,.esencia,.oferta,.noti,.acc,.noti__top,.contacto{padding-left:0;margin-left:0}
+  .shead,.esencia,.niveles,.noti,.acc,.noti__top,.contacto,.valores,.proyectos,.sedes{padding-left:0;margin-left:0}
   .hist__ph{width:100%;opacity:.5}
   .hist__fade{background:linear-gradient(180deg,rgba(23,54,83,.82) 0%,rgba(23,54,83,.92) 100%)}
   .hist__b{max-width:none;padding-inline:clamp(24px,5vw,44px)}
@@ -403,6 +485,12 @@ footer{background:var(--navy);color:#fff}
   .hist__note:hover{transform:rotate(-3deg)}
 }
 @media (max-width:760px){
+  /* En una sola columna la linea de tiempo se lee como lista vertical. */
+  .linea{gap:26px}
+  .hito{padding-top:26px;padding-right:0}
+  .hito b{font-size:22px}
+  .proy{padding:22px 22px}
+  .nivel{padding:24px 22px}
   .card-e{flex-direction:column;gap:16px;padding:26px 24px}
   .card-e__art{width:120px;margin:0}
   .card-e__leaf,.card-e__star{display:none}
@@ -525,7 +613,7 @@ footer{background:var(--navy);color:#fff}
 </section>
 
 <!-- ---------- Esencia ---------- -->
-<section class="sect" id="mision" aria-labelledby="t-esencia">
+<section class="sect sect--blanco" id="mision" aria-labelledby="t-esencia">
   <div class="wrap">
     <div class="shead">
       <h2 id="t-esencia">Nuestra esencia</h2>
@@ -539,7 +627,7 @@ footer{background:var(--navy);color:#fff}
         <div class="card-e__b">
           <h3>Misión</h3>
           <p>Somos una institución oficial y mixta que forma en valores éticos, morales y espirituales, para que cada estudiante crezca de manera armónica y construya su proyecto de vida.</p>
-          <p class="card-e__more" id="mision-mas" hidden>Promueve el desarrollo armónico del estudiante, la construcción de su proyecto de vida y el pensamiento analítico, crítico y reflexivo, para contribuir a una mejor convivencia social.</p>
+          <p class="card-e__more" id="mision-mas" hidden>Buscamos que sea analítico, crítico y reflexivo ante los problemas de su entorno, con miras a aportar soluciones para una mejor convivencia social.</p>
           <button class="card-e__t" data-mas="mision-mas" data-abrir="Leer misión completa →" data-cerrar="Ocultar ↑" aria-expanded="false" aria-controls="mision-mas">Leer misión completa →</button>
         </div>
         <img class="card-e__leaf" src="assets/hojas.svg" alt="" aria-hidden="true">
@@ -549,78 +637,207 @@ footer{background:var(--navy);color:#fff}
         <img class="card-e__art" src="assets/vision-meta.svg" alt="" aria-hidden="true">
         <div class="card-e__b">
           <h3>Visión 2027</h3>
-          <p>Queremos destacar en Chiriguaná por nuestra calidad educativa, la formación integral y los resultados en las pruebas de Estado.</p>
-          <p class="card-e__more" id="vision-mas" hidden>Con énfasis en la calidad humana, el pensamiento crítico, el uso de herramientas tecnológicas, la investigación y el cuidado del medio ambiente.</p>
+          <p>Nos proyectamos como la mejor institución de Chiriguaná en calidad educativa, sobresaliendo en las pruebas de Estado y caminando hacia la excelencia.</p>
+          <p class="card-e__more" id="vision-mas" hidden>Comprometidos con la formación integral en alta calidad humana, sentido crítico, manejo de herramientas tecnológicas, investigación y cuidado del medio ambiente.</p>
           <button class="card-e__t" data-mas="vision-mas" data-abrir="Leer visión completa →" data-cerrar="Ocultar ↑" aria-expanded="false" aria-controls="vision-mas">Leer visión completa →</button>
         </div>
         <img class="card-e__star" src="assets/estrellas.svg" alt="" aria-hidden="true">
       </article>
 
     </div>
+
+    <div class="shead" style="margin-top:clamp(56px,6vw,88px);margin-bottom:0">
+      <h2>Los valores que nos sostienen</h2>
+      <div class="rule"></div>
+      <p>Ocho principios que la comunidad educativa acordó y que guían la convivencia diaria.</p>
+    </div>
+    <div class="valores">
+      <article class="valor">
+        <h3>Respeto</h3>
+        <p>Por las personas, sus valores, sus creencias, sus dificultades y su orientación sexual.</p>
+      </article>
+      <article class="valor">
+        <h3>Compromiso</h3>
+        <p>El deseo de superación constante, con la institución como facilitadora del proceso.</p>
+      </article>
+      <article class="valor">
+        <h3>Ayuda mutua</h3>
+        <p>La afirmación de la individualidad junto al esfuerzo de superación personal.</p>
+      </article>
+      <article class="valor">
+        <h3>Solidaridad</h3>
+        <p>Participar de forma consciente en acciones que mejoren el bienestar de la sociedad.</p>
+      </article>
+      <article class="valor">
+        <h3>Honestidad</h3>
+        <p>Decir siempre la verdad y cumplir los deberes con transparencia y rectitud.</p>
+      </article>
+      <article class="valor">
+        <h3>Igualdad y equidad</h3>
+        <p>La defensa de la igualdad de oportunidades y el respeto a la diversidad étnica y cultural.</p>
+      </article>
+      <article class="valor">
+        <h3>Investigación</h3>
+        <p>Espíritu de creación para enfrentar con muchas opciones los retos de la sociedad.</p>
+      </article>
+      <article class="valor">
+        <h3>Paz y reconciliación</h3>
+        <p>Capacidad de perdonar, conciliar y resolver conflictos dentro y fuera del colegio.</p>
+      </article>
+    </div>
   </div>
 </section>
 
 <!-- ---------- Oferta ---------- -->
-<section class="sect sect--alt" id="oferta" aria-labelledby="t-oferta">
+<section class="sect" id="oferta" aria-labelledby="t-oferta">
   <div class="wrap">
     <div class="shead">
-      <h2 id="t-oferta">Aprender y crecer juntos</h2>
+      <h2 id="t-oferta">Del jardín a once</h2>
       <div class="rule"></div>
-      <p>Descubre todo lo que hace parte de nuestra comunidad educativa.</p>
+      <p>Acompañamos a los estudiantes durante todo su recorrido escolar, en cuatro sedes del municipio.</p>
     </div>
-    <div class="oferta">
-
-      <a class="card-o card-o--link" href="#oferta">
-        <img src="assets/oferta.svg" alt="" aria-hidden="true">
-        <h3>Oferta educativa</h3>
-        <p>Conoce nuestros niveles, del jardín a la media, y lo que cada etapa ofrece.</p>
-        <span class="card-o__go">Ver niveles <i aria-hidden="true">→</i></span>
-      </a>
-
-      <a class="card-o card-o--link" href="#proyectos" id="proyectos">
-        <img src="assets/proyectos.svg" alt="" aria-hidden="true">
-        <h3>Proyectos</h3>
-        <p>PRAE, PILEO, competencias ciudadanas y convivencia escolar.</p>
-        <span class="card-o__go">Ver proyectos <i aria-hidden="true">→</i></span>
-      </a>
-
-      <a class="card-o card-o--link" href="#contacto">
-        <img src="assets/valores.svg" alt="" aria-hidden="true">
-        <h3>Comunidad</h3>
-        <p>Estudiantes, familias y docentes que hacen posible la institución.</p>
-        <span class="card-o__go">Conocer más <i aria-hidden="true">→</i></span>
-      </a>
-
+    <div class="niveles">
+      <article class="nivel">
+        <p class="nivel__n">01</p>
+        <h3>Jardín</h3>
+        <span class="nivel__g">Preescolar</span>
+        <p>El primer encuentro con la vida escolar, en un entorno de cuidado y juego.</p>
+      </article>
+      <article class="nivel">
+        <p class="nivel__n">02</p>
+        <h3>Transición</h3>
+        <span class="nivel__g">Preescolar</span>
+        <p>El año que prepara el paso a la primaria y afianza los primeros aprendizajes.</p>
+      </article>
+      <article class="nivel">
+        <p class="nivel__n">03</p>
+        <h3>Básica Primaria</h3>
+        <span class="nivel__g">1.º a 5.º</span>
+        <p>La base: lectura, escritura, pensamiento matemático y convivencia.</p>
+      </article>
+      <article class="nivel">
+        <p class="nivel__n">04</p>
+        <h3>Básica Secundaria</h3>
+        <span class="nivel__g">6.º a 9.º</span>
+        <p>Se amplían las áreas y crece la autonomía en el trabajo escolar.</p>
+      </article>
+      <article class="nivel">
+        <p class="nivel__n">05</p>
+        <h3>Media Vocacional</h3>
+        <span class="nivel__g">10.º y 11.º</span>
+        <p>Los dos últimos años, con el servicio social obligatorio y la mirada puesta en el proyecto de vida.</p>
+      </article>
     </div>
+    <p class="nota">La sede principal ofrece jornada única en básica secundaria y media. Las sedes de preescolar y primaria funcionan en jornada de la mañana, salvo la Sede N.º 5, que atiende en jornada única de jardín a quinto.</p>
   </div>
 </section>
 
 <!-- ---------- Historia ---------- -->
-<section class="sect hist" id="institucion" aria-labelledby="t-hist">
-  <div class="hist__box">
-    <div class="hist__ph">
-      <img src="assets/sede-1600.jpg"
-           srcset="assets/sede-800.jpg 800w, assets/sede-1600.jpg 1600w"
-           sizes="(max-width:1100px) 100vw, 56vw"
-           alt="Estudiantes reunidos en el patio de la sede principal"
-           width="1600" height="900" loading="lazy">
+<section class="sect sect--azul" id="institucion" aria-labelledby="t-hist">
+  <div class="hist">
+    <div class="hist__box">
+      <div class="hist__ph">
+        <img src="assets/sede-1600.jpg"
+             srcset="assets/sede-800.jpg 800w, assets/sede-1600.jpg 1600w"
+             sizes="(max-width:1100px) 100vw, 56vw"
+             alt="Estudiantes reunidos en el patio de la sede principal"
+             width="1600" height="900" loading="lazy">
+      </div>
+      <div class="hist__fade" aria-hidden="true"></div>
+      <img class="hist__leaf" src="assets/hojas.svg" alt="" aria-hidden="true">
+      <div class="hist__b">
+        <h2 id="t-hist"><strong>Desde 1925,</strong> parte de la historia <strong>de Chiriguaná</strong></h2>
+        <div class="rule"></div>
+        <p>Iniciamos como Escuela Urbana de Niñas. Desde 2003 llevamos el nombre de Rafael Argote Vega, un docente que trabajó con los niños y jóvenes de la comunidad.</p>
+      </div>
+      <a class="hist__note" href="#institucion">
+        Más de una historia,<br>la historia de nuestra gente.
+        <svg viewBox="0 0 200 10" fill="none" aria-hidden="true" preserveAspectRatio="none"><path d="M2 7C50 2 130 1 198 4" stroke="#E5B653" stroke-width="2.6" stroke-linecap="round"/></svg>
+      </a>
     </div>
-    <div class="hist__fade" aria-hidden="true"></div>
-    <img class="hist__leaf" src="assets/hojas.svg" alt="" aria-hidden="true">
-    <div class="hist__b">
-      <h2 id="t-hist"><strong>Desde 1925,</strong> parte de la historia <strong>de Chiriguaná</strong></h2>
+  </div>
+  <div class="wrap">
+    <div class="linea">
+      <div class="hito">
+        <b>1925</b>
+        <p>Nace como Escuela Urbana de Niñas, en la Calle Bolívar, donde hoy está la Casa de la Cultura.</p>
+      </div>
+      <div class="hito">
+        <b>1945</b>
+        <p>Se inaugura la planta física, construida por el gobernador del Magdalena, departamento al que pertenecía Chiriguaná.</p>
+      </div>
+      <div class="hito">
+        <b>1979</b>
+        <p>Por orden gubernamental se constituye en Escuela Urbana Mixta N.º 2 y abre sus puertas a toda la población.</p>
+      </div>
+      <div class="hito">
+        <b>1997</b>
+        <p>Abre el grado sexto y comienza la básica secundaria, para que los jóvenes de la región no tuvieran que irse.</p>
+      </div>
+      <div class="hito">
+        <b>2000</b>
+        <p>La oferta llega hasta noveno grado, del preescolar en adelante.</p>
+      </div>
+      <div class="hito">
+        <b>2003</b>
+        <p>La Resolución 350 del 9 de octubre le da el nombre de Rafael Argote Vega, en honor al docente que sirvió a los niños y jóvenes de la comunidad.</p>
+      </div>
+      <div class="hito">
+        <b>2005</b>
+        <p>Primera jornada electoral entre sedes para elegir personero estudiantil.</p>
+      </div>
+      <div class="hito">
+        <b>2009</b>
+        <p>Primera promoción: 17 jóvenes reciben su diploma de bachiller.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ---------- Proyectos ---------- -->
+<section class="sect sect--menta" id="proyectos" aria-labelledby="t-proy">
+  <div class="wrap">
+    <div class="shead">
+      <h2 id="t-proy">Proyectos transversales</h2>
       <div class="rule"></div>
-      <p>Iniciamos como Escuela Urbana de Niñas. Desde 2003 llevamos el nombre de Rafael Argote Vega, un docente que trabajó con los niños y jóvenes de la comunidad.</p>
+      <p>Siete proyectos que atraviesan todas las áreas y acompañan el desarrollo físico, intelectual, afectivo y moral de cada estudiante.</p>
     </div>
-    <a class="hist__note" href="#institucion">
-      Más de una historia,<br>la historia de nuestra gente.
-      <svg viewBox="0 0 200 10" fill="none" aria-hidden="true" preserveAspectRatio="none"><path d="M2 7C50 2 130 1 198 4" stroke="#E5B653" stroke-width="2.6" stroke-linecap="round"/></svg>
-    </a>
+    <div class="proyectos">
+      <article class="proy">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 4c0 9-5 14-12 14H5c0-8 5-13 12-13h3z"/><path d="M4 20c1.5-4 4-7 8-9"/></svg></i>
+        <div><b>PRAE</b><span>Proyecto Ambiental Escolar: cuidado y conservación del entorno.</span></div>
+      </article>
+      <article class="proy">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21c4-3 8-6 8-10a4 4 0 0 0-8-1 4 4 0 0 0-8 1c0 4 4 7 8 10z"/></svg></i>
+        <div><b>Competencias ciudadanas</b><span>Formación para la participación y la vida en comunidad.</span></div>
+      </article>
+      <article class="proy">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.8 6.6a4.6 4.6 0 0 0-7.2-1L12 7l-1.6-1.4a4.6 4.6 0 0 0-7.2 1c-1.2 2.2-.6 5 1.4 6.9L12 20l7.4-6.5c2-1.9 2.6-4.7 1.4-6.9z"/></svg></i>
+        <div><b>Orientación sexual e identidad de género</b><span>Acompañamiento desde el respeto y la diversidad.</span></div>
+      </article>
+      <article class="proy">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12.5c4-1 6-3 7.5-6 1 2.5 3 4 6 4.5-1 4.5-4.5 8-9 8.5"/><circle cx="17.5" cy="7" r="1.1"/></svg></i>
+        <div><b>Educación para la justicia y la paz</b><span>Resolución de conflictos en el colegio, la familia y el barrio.</span></div>
+      </article>
+      <article class="proy">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.6"/><path d="M12 7.2V12l3.2 2"/></svg></i>
+        <div><b>Aprovechamiento del tiempo libre</b><span>Cultura, deporte y recreación como parte de la formación.</span></div>
+      </article>
+      <article class="proy">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 10.5v3M12 18v3"/><path d="M4.5 21 9 3M19.5 21 15 3"/></svg></i>
+        <div><b>Educación vial</b><span>Movilidad segura y responsable dentro y fuera del colegio.</span></div>
+      </article>
+      <article class="proy">
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h5.5A2.5 2.5 0 0 1 12 7v13a2.2 2.2 0 0 0-2.2-1.6H4zM20 4.5h-5.5A2.5 2.5 0 0 0 12 7v13a2.2 2.2 0 0 1 2.2-1.6H20z"/></svg></i>
+        <div><b>PILEO</b><span>Proyecto institucional de lectura, escritura y oralidad.</span></div>
+      </article>
+    </div>
+    <p class="nota">Los estudiantes de 10.º y 11.º cumplen además 100 horas de servicio social obligatorio, apoyando actividades académicas, deportivas y culturales de la institución.</p>
   </div>
 </section>
 
 <!-- ---------- Noticias ---------- -->
-<section class="sect" id="noticias" aria-labelledby="t-noti">
+<section class="sect sect--blanco" id="noticias" aria-labelledby="t-noti">
   <div class="wrap">
     <div class="shead">
       <h2 id="t-noti">Noticias</h2>
@@ -676,34 +893,66 @@ footer{background:var(--navy);color:#fff}
   </div>
 </section>
 
-<!-- ---------- Accesos y contacto ---------- -->
-<section class="sect sect--alt" id="documentos" aria-labelledby="t-acc">
+<!-- ---------- Sedes y contacto ---------- -->
+<section class="sect" id="documentos" aria-labelledby="t-sedes">
   <div class="wrap">
     <div class="shead">
-      <h2 id="t-acc">Documentos y contacto</h2>
+      <h2 id="t-sedes">Dónde encontrarnos</h2>
+      <div class="rule"></div>
+      <p>La institución está conformada por cuatro sedes en Chiriguaná.</p>
+    </div>
+    <div class="sedes">
+      <article class="sede">
+        <p class="sede__k">SEDE PRINCIPAL</p>
+        <h3>Institución Educativa Rafael Argote Vega</h3>
+        <p>Calle 8 con carrera 1, en inmediaciones del cementerio municipal y el patinódromo.</p>
+        <span class="sede__j">Jornada única · Básica secundaria y media</span>
+      </article>
+      <article class="sede">
+        <p class="sede__k">SEDE N.º 1</p>
+        <h3>Escuela Urbana Mixta N.º 1</h3>
+        <p>Calle 6 con carrera 2.</p>
+        <span class="sede__j">Jornada mañana · Preescolar a quinto</span>
+      </article>
+      <article class="sede">
+        <p class="sede__k">SEDE N.º 5</p>
+        <h3>Escuela Urbana de Niñas Nuestra Señora de Chiquinquirá</h3>
+        <p>Calle 7 con carrera 2.</p>
+        <span class="sede__j">Jornada única · Jardín a quinto</span>
+      </article>
+      <article class="sede">
+        <p class="sede__k">SEDE N.º 6</p>
+        <h3>Escuela Urbana Mixta N.º 6 Campo Soto</h3>
+        <p>Carrera 4, junto a la Villa Olímpica Alejandro Aroca Saad.</p>
+        <span class="sede__j">Jornada mañana · Preescolar a quinto</span>
+      </article>
+    </div>
+
+    <div class="shead" style="margin-top:clamp(56px,6vw,88px);margin-bottom:clamp(26px,3vw,36px)">
+      <h2 id="contacto">Documentos y contacto</h2>
       <div class="rule"></div>
       <p>Lo que las familias suelen necesitar, a un clic.</p>
     </div>
     <div class="acc">
 
       <a class="acc-i" href="#documentos">
-        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg></i>
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4.5h5.5A2.5 2.5 0 0 1 12 7v13a2.2 2.2 0 0 0-2.2-1.6H4zM20 4.5h-5.5A2.5 2.5 0 0 0 12 7v13a2.2 2.2 0 0 1 2.2-1.6H20z"/></svg></i>
         <span><b>Manual de Convivencia</b><small>Documento en PDF</small></span>
       </a>
 
       <a class="acc-i" href="#documentos">
         <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-11A.5.5 0 0 1 6 20V4a.5.5 0 0 1 .5-.5z"/><path d="M14 3.5V8h4M9 13h6M9 16.5h4"/></svg></i>
-        <span><b>Documentos institucionales</b><small>PEI, formatos y circulares</small></span>
+        <span><b>Requisitos de matrícula</b><small>Documentos y pasos para el cupo</small></span>
       </a>
 
       <a class="acc-i" href="#documentos">
-        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></i>
-        <span><b>Sedes</b><small>Dónde encontrarnos</small></span>
+        <i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.7 7-11a7 7 0 1 0-14 0c0 5.3 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></i>
+        <span><b>Secretaría</b><small>Sede principal, calle 8 con carrera 1</small></span>
       </a>
 
     </div>
 
-    <div class="contacto" id="contacto">
+    <div class="contacto">
       <span><b>Sede principal</b><br><span style="font-size:15px;color:var(--ink-70)">Calle 8 con carrera 1, Chiriguaná, Cesar</span></span>
       <span class="chip">TELÉFONO Y CORREO POR CONFIRMAR</span>
     </div>

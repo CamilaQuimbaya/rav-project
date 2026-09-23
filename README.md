@@ -84,15 +84,43 @@ HTML, el script del `<head>` y el bloque de la intro en el script del final.
 
 La pantalla de carga de la plataforma es otra cosa y no se toca.
 
+## Contenido
+
+Casi todo el contenido sale del Manual de Convivencia de la institución: los
+ocho valores, los cinco niveles, los siete proyectos transversales, las cuatro
+sedes con sus direcciones y jornadas, y los ocho hitos de la línea de tiempo
+(1925, 1945, 1979, 1997, 2000, 2003, 2005 y 2009). La misión y la visión están
+condensadas de los artículos 12 y 13.
+
+Los rangos de grados de cada nivel (1.º a 5.º, 6.º a 9.º, 10.º y 11.º) siguen la
+estructura estándar del sistema educativo colombiano; el manual los menciona
+parcialmente pero no los enumera.
+
 ## Pendientes de contenido
 
 - Las tres noticias son de muestra y están marcadas como tales.
 - Teléfono y correo sin confirmar.
-- Las tarjetas de Oferta, Proyectos y Comunidad, y los tres accesos a
-  documentos, dicen "Próximamente": no hay páginas destino todavía. Cuando
-  existan, se convierten en enlaces.
+- Los accesos a documentos no tienen todavía archivo destino.
+- El manual dice que "la sede No 2 ofrece preescolar a quinto en ambas
+  jornadas", pero las sedes que enumera son la 1, la 5 y la 6. Esa frase se
+  omitió por la inconsistencia; conviene verificarla con la institución.
 - Las dos fotos parecen generadas por IA. La de la sede muestra un edificio con
   el nombre del colegio pintado que no es la sede real.
+
+## Fondos
+
+El ritmo cromático sigue la proporción de la p.6 del manual de marca: marfil
+domina, azul da estructura, turquesa acompaña y el dorado va solo en acentos
+(nunca como fondo de sección).
+
+    portada        marfil   #F7F5EF
+    esencia        blanco
+    oferta         marfil
+    historia       azul     #173653
+    proyectos      menta    #E6F4F3
+    noticias       blanco
+    sedes          marfil
+    pie            azul     #173653
 
 ## Actualizar la plataforma
 
