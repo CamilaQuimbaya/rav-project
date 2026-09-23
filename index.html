@@ -186,10 +186,10 @@ html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
   background:linear-gradient(90deg,var(--cream) 0%,var(--cream) 36%,rgba(247,245,239,.85) 42%,rgba(247,245,239,0) 56%);
 }
 /* A la altura de la hoja la curva pasa por el 63,5% del alto del separador;
-   restando 40px, ese es justo el trozo de base que queda oculto detras. */
+   lo que se resta es el trozo de base que queda oculto detras del relleno. */
 .hero__leaf{
   position:absolute;left:40%;width:128px;z-index:6;pointer-events:none;
-  bottom:calc(clamp(72px,8vw,148px) * .635 - 40px);
+  bottom:calc(clamp(72px,8vw,148px) * .635 - 18px);
 }
 .hero__body{
   position:relative;z-index:5;max-width:none;margin:0;
