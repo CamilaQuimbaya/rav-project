@@ -732,11 +732,15 @@ footer{background:var(--navy);color:#fff}
   <div class="hero__velo-b" aria-hidden="true"></div>
   <svg class="hero__velo" viewBox="0 0 1440 360" preserveAspectRatio="none" aria-hidden="true">
     <defs>
-      <linearGradient id="veloG" x1="0" y1="0" x2=".92" y2=".8">
-        <stop offset="0" stop-color="#F7F5EF" stop-opacity=".97"/>
-        <stop offset=".42" stop-color="#F7F5EF" stop-opacity=".94"/>
-        <stop offset=".72" stop-color="#F7F5EF" stop-opacity=".78"/>
-        <stop offset="1" stop-color="#F7F5EF" stop-opacity=".42"/>
+      <!-- Casi horizontal: crema macizo hasta donde empieza el niño, y de ahi
+           se abre rapido para devolverle la foto al resto. Los porcentajes van
+           sobre la caja del trazado, que llega hasta x=1022. -->
+      <linearGradient id="veloG" x1="0" y1="0" x2="1" y2=".12">
+        <stop offset="0" stop-color="#F7F5EF" stop-opacity="1"/>
+        <stop offset=".58" stop-color="#F7F5EF" stop-opacity=".99"/>
+        <stop offset=".72" stop-color="#F7F5EF" stop-opacity=".62"/>
+        <stop offset=".85" stop-color="#F7F5EF" stop-opacity=".2"/>
+        <stop offset="1" stop-color="#F7F5EF" stop-opacity="0"/>
       </linearGradient>
       <filter id="veloB" x="-25%" y="-25%" width="150%" height="150%">
         <feGaussianBlur stdDeviation="24"/>
