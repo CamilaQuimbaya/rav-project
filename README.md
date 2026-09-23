@@ -7,127 +7,105 @@ Publicado en: https://camilaquimbaya.github.io/rav-project/
 ## Estructura
 
 ```
-index.html                    sitio institucional, HTML y CSS a mano
+index.html                    el sitio entero: HTML, CSS y JS a mano, sin compilar
 assets/
   logo-rav.svg                composicion maestra (escudo + nombre + descriptor)
   logo-nombre.svg             escudo + nombre, sin descriptor ni ubicacion
   logo-nombre-blanco.svg      la misma, blanca, para fondos azules
   escudo.svg                  escudo solo, en color
-  escudo-blanco.svg           escudo solo, blanco, para fondos azules
-  rav-logo.js                 <rav-logo> animado, usado en la intro
-  comunidad-1600/800.jpg      foto de portada
-  sede-1600/800.jpg           foto de la franja de historia
-  hojas / estrellas / mision-libro / vision-meta /
-  oferta / proyectos / valores / ramas .svg    ilustraciones de marca
-  il-*.png                    ilustraciones grandes (niveles, promesa, documentos)
+  escudo-blanco.svg           escudo solo, blanco
+  rav-logo.js                 <rav-logo>, el logo animado de la intro
+  comunidad-*.jpg             foto de la portada (1600 y 800 px)
+  sede-*.jpg                  foto de la seccion de historia
+  il-*.png                    ilustraciones grandes
+  hojas / estrellas / ramas / mision-libro / vision-meta /
+  oferta / proyectos / valores .svg     ilustraciones de marca
 plataforma/index.html         la plataforma educativa (prototipo) — NO SE TOCA
 .nojekyll                     evita que GitHub Pages procese el sitio con Jekyll
 ```
 
-El sitio se edita directamente en `index.html`. No hay paso de compilación: se
-abre, se cambia y se sube. Todo el CSS va en un `<style>` al inicio del archivo,
-organizado por secciones con comentarios.
-
-## Origen de los recursos
-
-Las ilustraciones y las fotos salieron del diseño hecho en Claude Design
-(proyecto "Sitio Institucional RAV v3"). Las fotos venían como PNG de 3,2 y
-2,7 MB; aquí están como JPEG progresivo en dos tamaños (1600px y 800px), que es
-lo que sirve `srcset`. El sitio completo pesa 1,4 MB en vez de 8,1 MB.
-
-El escudo es el mismo archivo que usa la plataforma: se verificó comparando la
-geometría de los 69 trazados.
-
-Las ilustraciones `il-*.png` salieron de las láminas entregadas por la diseñadora.
-Venían en tiras de tres sobre fondo marfil; se separaron, se les quitó el fondo
-con relleno por inundación desde los bordes (para no vaciar los blancos
-interiores de páginas y bombilla) y se redujeron a paleta indexada de 64 colores.
-Pesaban 1,5 MB en total y quedaron en 84 KB.
+Se edita directamente en `index.html`. Todo el CSS va en un `<style>` al inicio
+y el JS en un `<script>` al final, ambos organizados por secciones.
 
 ## Marca
 
-El sitio sigue el Manual de Marca RAV v1.0 (septiembre 2026), opción escudo.
-Decisiones que vienen de ahí y conviene no deshacer sin releerlo:
+El sitio sigue el Manual de Marca RAV v1.0 (septiembre 2026), opcion escudo.
+Decisiones que vienen de ahi:
 
-- **Versión "nombre + símbolo", no la composición completa.** El manual pide
-  400 px de ancho para la versión con descriptor y ubicación, que en un
-  encabezado web no caben. Se usa la versión reducida documentada en la p.4
-  (escudo + nombre, sin descriptor ni ubicación), cuyo mínimo es 280 px; aquí va
-  a 300 px en el encabezado y en el pie. De paso no arrastra el bajante
-  "PLATAFORMA EDUCATIVA", que identifica a la plataforma y no al colegio (p.2).
-- **Escudo solo** donde no caben esos 280 px: la barra flotante (56 px), el
-  encabezado y el pie por debajo de 1100 px, y el favicon. Son los tamaños
-  documentados para "escudo / avatar e icono" (96 · 56 · 32 px).
-- **Área de protección** de 1/4 del ancho del escudo, como padding del enlace.
-- **Turquesa.** `#178C91` es el color de marca y se usa en superficies y
-  trazos. Para texto, y para fondos que llevan texto blanco, va `#0F6E72`: el
-  manual lo indica en la p.6 y se verificó que `#178C91` con blanco da 4,04:1,
-  que no alcanza el AA de la WCAG. `#0F6E72` da 6,01:1.
-- **Marfil `#F7F5EF` como fondo dominante**, azul para estructura y texto,
-  turquesa para acción, dorado sólo en acentos (p.6).
-- **Tipografía**: Sora en titulares (600), Work Sans en cuerpo (400, 16-18 px) y
-  etiquetas (600, 14 px, 0,14 em). DejaVu Sans y Arial de respaldo (p.7).
-- **Componentes**: radio 14 px en tarjetas, 999 px en botones, altura táctil
-  mínima 44 px, foco visible con contorno turquesa de 2 px (p.8).
+- **Turquesa.** `#178C91` en superficies y trazos. Para texto, y para fondos que
+  llevan texto blanco, va `#0F6E72`: el manual lo indica en la p.6 y se verifico
+  que `#178C91` con blanco da 4,04:1, por debajo del AA de la WCAG.
+- **Marfil `#F7F5EF` como fondo dominante**, azul para estructura, turquesa para
+  accion, dorado solo en acentos (p.6).
+- **Tipografia**: Sora en titulares (600), Work Sans en cuerpo (400, 16-18px) y
+  etiquetas (600, 14px, 0,14em). DejaVu Sans y Arial de respaldo (p.7).
+- **Componentes**: radio 14px en tarjetas, 999px en botones, altura tactil
+  minima 44px, foco visible con contorno turquesa de 2px (p.8).
+- **Logo**: version "nombre + simbolo" (sin el bajante "PLATAFORMA EDUCATIVA",
+  que identifica a la plataforma y no al colegio, p.2). Escudo solo donde no
+  caben los 280px que pide esa version: movil y favicon.
 
-Caveat, la manuscrita del lema, no está en el manual: viene del diseño original
-y se conservó a propósito.
+### Desviaciones conscientes
 
-## Intro animada
+- **Logo de la barra fija a 200px**, por debajo de los 280px que propone la p.4.
+  A 280px la barra media 121px de alto y comia demasiada pantalla; a 200px mide
+  88px y el nombre sigue legible.
+- **Caveat** (la manuscrita del lema y de la nota de historia) no esta en el
+  manual: viene del diseño original y se conservo a proposito.
 
-Al entrar se muestra una vez por sesión el logo animándose (`<rav-logo>`, 2,8 s),
-y luego aparece el sitio. El componente viene del diseño "Logo RAV Animado" y no
-tiene dependencias; dibuja el escudo, el nombre y "Chiriguaná · Cesar", sin el
-bajante "PLATAFORMA EDUCATIVA".
+## Como esta construido
 
-Se decide antes del primer pintado, en un script en el `<head>`, para que el
-sitio no parpadee. No se muestra si el visitante pide reducir movimiento, ni en
-la segunda carga de la misma sesión — y en esos casos tampoco se descargan los
-64 KB del componente. Si el componente no carga, la intro se cierra sola a los
-4 segundos. Sin JavaScript no aparece y el sitio funciona igual.
+**Separadores de seccion.** El borde entre secciones no es una linea recta: es
+una curva, con tres arcos paralelos encima en turquesa y dorado. Es el mismo
+grafismo del fondo del login de la plataforma. El SVG se estira con
+`preserveAspectRatio="none"`, y los trazos llevan `vector-effect:non-scaling-stroke`
+para que el estirado no les cambie el grosor.
 
-Para quitarla: borrar el bloque `.intro` del CSS, el `<div class="intro">` del
-HTML, el script del `<head>` y el bloque de la intro en el script del final.
+**Recortes con curva.** La foto de la portada y el velo llevan mascaras SVG con
+`feGaussianBlur` en el borde: sin ese desenfoque la curva se veria como un filo
+duro atravesando la imagen.
 
-La pantalla de carga de la plataforma es otra cosa y no se toca.
+**Contraste verificado.** Cada vez que hay texto sobre foto o sobre una capa
+semitransparente, la opacidad se eligio midiendo la luminancia real de la imagen
+y calculando el ratio, no a ojo. La foto de historia va al 26% porque la mascara
+la apaga justo donde vive el texto; sin esa mascara el maximo seria 16%.
+
+**Movimiento.** Aparicion al entrar en pantalla (en los dos sentidos del scroll,
+con la direccion del desplazamiento segun por donde salio el bloque), parallax en
+cuatro capas y barra de progreso. Todo con `transform` y `opacity` dentro de
+`requestAnimationFrame`. Con `prefers-reduced-motion` no se ejecuta nada de esto
+y el contenido aparece visible de entrada.
+
+**Intro.** Al entrar se muestra una vez por sesion el logo animandose (2,8s). Se
+decide en un script del `<head>` para que el sitio no parpadee, el componente solo
+se descarga si se va a usar, y hay una red de seguridad a los 4 segundos por si
+no carga. La pantalla de carga de la plataforma es otra cosa y no se toca.
 
 ## Contenido
 
-Casi todo el contenido sale del Manual de Convivencia de la institución: los
-ocho valores, los cinco niveles, los siete proyectos transversales, las cuatro
-sedes con sus direcciones y jornadas, y los ocho hitos de la línea de tiempo
-(1925, 1945, 1979, 1997, 2000, 2003, 2005 y 2009). La misión y la visión están
-condensadas de los artículos 12 y 13.
+Casi todo sale del Manual de Convivencia: los ocho valores, los cinco niveles,
+los siete proyectos transversales, las cuatro sedes con direcciones y jornadas, y
+los ocho hitos de la linea de tiempo (1925, 1945, 1979, 1997, 2000, 2003, 2005 y
+2009). Mision y vision estan condensadas de los articulos 12 y 13.
 
-Los rangos de grados de cada nivel (1.º a 5.º, 6.º a 9.º, 10.º y 11.º) siguen la
-estructura estándar del sistema educativo colombiano; el manual los menciona
-parcialmente pero no los enumera.
+Los rangos de grados de cada nivel siguen la estructura estandar del sistema
+educativo colombiano; el manual los menciona parcialmente pero no los enumera.
 
-## Pendientes de contenido
+Las ilustraciones `il-*.png` venian en laminas de tres sobre fondo marfil. Se
+separaron, se les quito el fondo con relleno por inundacion desde los bordes
+(para no vaciar los blancos interiores de paginas y bombilla) y se redujeron a
+paleta indexada. Pesaban 1,5 MB y quedaron en 84 KB.
 
-- Las tres noticias son de muestra y están marcadas como tales.
-- Teléfono y correo sin confirmar.
-- Los accesos a documentos no tienen todavía archivo destino.
+## Pendientes
+
+- Las tres noticias son de muestra y estan marcadas como tales.
+- Telefono y correo sin confirmar.
+- Los accesos a documentos no tienen todavia archivo destino.
 - El manual dice que "la sede No 2 ofrece preescolar a quinto en ambas
   jornadas", pero las sedes que enumera son la 1, la 5 y la 6. Esa frase se
-  omitió por la inconsistencia; conviene verificarla con la institución.
+  omitio por la inconsistencia; conviene verificarla con la institucion.
 - Las dos fotos parecen generadas por IA. La de la sede muestra un edificio con
   el nombre del colegio pintado que no es la sede real.
-
-## Fondos
-
-El ritmo cromático sigue la proporción de la p.6 del manual de marca: marfil
-domina, azul da estructura, turquesa acompaña y el dorado va solo en acentos
-(nunca como fondo de sección).
-
-    portada        marfil   #F7F5EF
-    esencia        blanco
-    oferta         marfil
-    historia       azul     #173653
-    proyectos      menta    #E6F4F3
-    noticias       blanco
-    sedes          marfil
-    pie            azul     #173653
 
 ## Actualizar la plataforma
 
@@ -137,5 +115,5 @@ sed -i 's|<title>Bundled Page</title>|<title>Plataforma RAV</title>|' plataforma
 git commit -am "Actualizar plataforma" && git push
 ```
 
-La plataforma es un prototipo navegable: el ingreso no valida credenciales y
-trae una barra DEMO para cambiar de perfil. No debe cargarse con datos reales.
+La plataforma es un prototipo navegable: el ingreso no valida credenciales y trae
+una barra DEMO para cambiar de perfil. No debe cargarse con datos reales.
