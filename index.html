@@ -80,16 +80,19 @@ section[id],[id]{scroll-margin-top:84px}
 
 /* ---------- Encabezado dentro de la portada ---------- */
 .head{position:relative;z-index:10;pointer-events:none}
+/* A todo el ancho para que el logo y el menu queden pegados al borde;
+   el boton se ancla con margin-right a donde estaba el contenedor de 1480. */
 .head__in{
-  max-width:var(--wrap);margin:0 auto;
-  padding:14px var(--pad);display:flex;align-items:center;gap:28px;
+  max-width:none;margin:0;
+  padding:14px var(--pad);display:flex;align-items:center;gap:24px;
 }
 .head__logo{flex:none;pointer-events:auto;display:block}
-/* Manual p.4: area de proteccion x = 1/4 del ancho del escudo. */
-.head__logo{padding:14px}
+/* Manual p.4: area de proteccion x = 1/4 del ancho del escudo.
+   Con el logo a 300px el escudo mide 91px, asi que x = 23px. */
+.head__logo{padding:23px 23px 23px 0}
 .head__logo .lg-full{width:300px;height:auto;display:block}
 .head__logo .lg-mark{display:none;height:64px;width:auto}
-.nav{display:flex;align-items:center;gap:6px;margin-left:clamp(10px,3vw,60px);pointer-events:auto}
+.nav{display:flex;align-items:center;gap:4px;margin-left:clamp(4px,1.5vw,28px);pointer-events:auto}
 .nav a{
   color:var(--navy);font-size:14.5px;padding:10px 12px;
   display:flex;flex-direction:column;align-items:center;gap:6px;white-space:nowrap;
@@ -99,7 +102,9 @@ section[id],[id]{scroll-margin-top:84px}
 .nav a:hover span{background:rgba(20,127,132,.35)}
 .nav a[aria-current="page"]{font-weight:700}
 .nav a[aria-current="page"] span{background:var(--teal)}
-.head__cta{pointer-events:auto;font-size:14.5px;padding:14px 24px}
+/* Se queda donde estaba: al borde derecho del contenedor de 1480 centrado. */
+.head__cta{pointer-events:auto;font-size:14.5px;padding:14px 24px;
+  margin-right:max(0px,calc((100vw - var(--wrap)) / 2))}
 .head__sp{flex:1}
 .burger{
   display:none;pointer-events:auto;align-items:center;gap:8px;
@@ -130,13 +135,14 @@ section[id],[id]{scroll-margin-top:84px}
 }
 .bar.on{transform:none}
 .bar__in{
-  max-width:var(--wrap);margin:0 auto;padding:8px var(--pad);
+  max-width:none;margin:0;padding:8px var(--pad);
   display:flex;align-items:center;gap:20px;min-height:64px;
 }
 .bar__in img{height:56px;width:auto;flex:none}
 .bar .nav{margin-left:auto}
 .bar .nav a{padding:8px 10px;font-size:14px}
-.bar .btn{min-height:44px;padding:10px 20px;font-size:14px}
+.bar .btn{min-height:44px;padding:10px 20px;font-size:14px;
+  margin-right:max(0px,calc((100vw - var(--wrap)) / 2))}
 
 /* ---------- Portada ---------- */
 .hero{position:relative;background:var(--cream);overflow:hidden}
@@ -354,7 +360,7 @@ footer{background:var(--navy);color:#fff}
      asi que en pantallas angostas se usa el escudo solo. */
   .head__logo .lg-full,.foot__logo .lg-full{display:none}
   .head__logo .lg-mark,.foot__logo .lg-mark{display:block}
-  .head__logo{padding:10px}
+  .head__logo{padding:13px 13px 13px 0}
   .shead,.esencia,.oferta,.noti,.acc,.noti__top,.contacto{padding-left:0;margin-left:0}
   .hist__ph{width:100%;opacity:.5}
   .hist__fade{background:linear-gradient(180deg,rgba(23,54,83,.82) 0%,rgba(23,54,83,.92) 100%)}
