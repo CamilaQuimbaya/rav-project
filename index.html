@@ -70,7 +70,7 @@ h1,h2,h3{margin:0;font-family:var(--display);font-weight:600;line-height:1.15}
 p{margin:0}
 .wrap{max-width:none;margin:0;padding-inline:var(--pad)}
 /* Todo destino de ancla despeja la barra fija. */
-section[id],[id]{scroll-margin-top:84px}
+section[id],[id]{scroll-margin-top:136px}
 
 /* ---------- Intro ---------- */
 .intro{display:none}
@@ -168,10 +168,14 @@ html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
 }
 .bar.on{transform:none}
 .bar__in{
-  max-width:none;margin:0;padding:8px var(--pad);
-  display:flex;align-items:center;gap:20px;min-height:64px;
+  max-width:none;margin:0;padding:6px var(--pad);
+  display:flex;align-items:center;gap:20px;min-height:121px;
 }
-.bar__in img{height:56px;width:auto;flex:none}
+/* Manual p.4: la version con nombre no baja de 280px de ancho, y esa
+   anchura fija el alto de la barra (280 / 2,572 = 109px). */
+.bar__logo{flex:none;display:block}
+.bar__logo .lg-full{width:280px;height:auto;display:block}
+.bar__logo .lg-mark{display:none;height:56px;width:auto}
 .bar .nav{margin-left:auto}
 .bar .nav a{padding:8px 10px;font-size:14px}
 .bar .btn{min-height:44px;padding:10px 20px;font-size:14px;
@@ -642,6 +646,12 @@ footer{background:var(--navy);color:#fff}
   .burger{display:flex;margin-left:auto}
   .bar .nav{display:none}
   .bar .btn{margin-left:auto}
+  /* Por debajo de 1100px los 280px del logo con nombre no caben junto al
+     boton, asi que la barra vuelve al escudo y recupera su altura. */
+  .bar__logo .lg-full{display:none}
+  .bar__logo .lg-mark{display:block}
+  .bar__in{min-height:70px;padding:8px var(--pad)}
+  section[id],[id]{scroll-margin-top:86px}
   .hero__ph,.hero__fade,.hero__leaf,.hero__velo,.hero__velo-b{display:none}
   .hero__ph--m{display:block}
   /* La regla de arriba tambien alcanzaba a la hoja del bloque movil. */
@@ -710,7 +720,10 @@ footer{background:var(--navy);color:#fff}
 <!-- Barra compacta: aparece al dejar atrás la portada -->
 <div class="bar" id="bar" aria-hidden="true">
   <div class="bar__in">
-    <a href="#inicio" aria-label="Rafael Argote Vega, inicio"><img src="assets/escudo.svg" alt="" width="44" height="56"></a>
+    <a class="bar__logo" href="#inicio" aria-label="Rafael Argote Vega, inicio">
+      <img class="lg-full" src="assets/logo-nombre.svg" alt="" width="280" height="109">
+      <img class="lg-mark" src="assets/escudo.svg" alt="" width="44" height="56">
+    </a>
     <nav class="nav" aria-label="Secciones">
       <a href="#institucion">Nuestra institución</a>
       <a href="#oferta">Oferta educativa</a>
@@ -718,7 +731,10 @@ footer{background:var(--navy);color:#fff}
       <a href="#noticias">Noticias</a>
       <a href="#contacto">Contacto</a>
     </nav>
-    <a class="btn btn--teal" href="plataforma/index.html">Ingresar a la plataforma</a>
+    <a class="btn btn--teal" href="plataforma/index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.6 9.4 12 5l9.4 4.4L12 13.8z"/><path d="M6.6 11.4v4.2c0 1.4 2.4 2.6 5.4 2.6s5.4-1.2 5.4-2.6v-4.2M21.4 9.4v5"/></svg>
+      Ingresar a la plataforma →
+    </a>
   </div>
 </div>
 
