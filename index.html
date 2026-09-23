@@ -86,6 +86,8 @@ html[data-intro].intro-fin{overflow:auto}
 html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
 .intro rav-logo{width:min(520px,78vw);display:block}
 
+.vo{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+
 .skip{
   position:absolute;left:12px;top:-60px;z-index:80;
   background:var(--navy);color:#fff;padding:12px 16px;
@@ -465,11 +467,49 @@ footer{background:var(--navy);color:#fff}
   display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),1fr));
   gap:34px 26px;
 }
-.hito{position:relative;padding-top:32px;padding-right:18px}
-.hito::before{content:"";position:absolute;left:0;right:0;top:5px;height:2px;background:rgba(229,182,83,.28)}
-.hito::after{content:"";position:absolute;left:0;top:0;width:12px;height:12px;border-radius:50%;background:var(--gold)}
-.hito b{display:block;font-family:var(--display);font-size:25px;font-weight:600;color:var(--gold);margin-bottom:9px}
+.hito{position:relative;padding-top:32px;padding-right:20px}
+/* La linea se dibuja de izquierda a derecha cuando el hito entra en pantalla */
+.hito__l{
+  position:absolute;left:0;right:20px;top:5px;height:2px;border-radius:2px;
+  background:rgba(229,182,83,.2);overflow:hidden;
+}
+.hito__l i{
+  display:block;height:100%;background:var(--gold);
+  transform:scaleX(0);transform-origin:0 50%;
+  transition:transform .85s cubic-bezier(.22,1,.36,1);
+  transition-delay:calc(var(--d,0ms) + 90ms);
+}
+.rg.vis .hito__l i{transform:scaleX(1)}
+.hito::after{
+  content:"";position:absolute;left:0;top:0;width:12px;height:12px;border-radius:50%;
+  background:var(--gold);transform:scale(0);
+  transition:transform .5s cubic-bezier(.34,1.56,.64,1),box-shadow .25s;
+  transition-delay:var(--d,0ms);
+}
+.rg.vis .hito::after{transform:scale(1)}
+.hito:hover::after{box-shadow:0 0 0 6px rgba(229,182,83,.22)}
+.hito__b{
+  display:flex;align-items:center;gap:11px;
+  background:none;border:0;padding:0;margin-bottom:9px;cursor:pointer;
+  font-family:var(--display);font-size:25px;font-weight:600;color:var(--gold);
+  transition:color .2s;
+}
+.hito__b:hover{color:#F3DFAF}
+.hito__b i{
+  width:22px;height:22px;border-radius:50%;flex:none;
+  border:1.5px solid rgba(229,182,83,.55);color:var(--gold);
+  display:grid;place-items:center;font-style:normal;font-size:15px;line-height:1;
+  font-family:var(--sans);font-weight:400;
+  transition:transform .3s cubic-bezier(.22,1,.36,1),background .2s,color .2s;
+}
+.hito__b:hover i{background:rgba(229,182,83,.18)}
+.hito__b[aria-expanded="true"] i{transform:rotate(45deg);background:var(--gold);color:var(--navy)}
 .hito p{font-size:15px;line-height:1.5;color:rgba(255,255,255,.85);text-wrap:pretty}
+.hito__mas{
+  margin-top:11px;padding-top:11px;border-top:1px solid rgba(255,255,255,.18);
+  font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.7);
+}
+.hito__mas[hidden]{display:none}
 
 /* ---------- Proyectos ---------- */
 .proyectos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:18px}
@@ -530,19 +570,23 @@ footer{background:var(--navy);color:#fff}
 }
 
 /* ---------- Aparicion al entrar en pantalla ---------- */
+/* --dy lo fija el script segun por donde salio el bloque: si salio por
+   arriba vuelve a entrar desde arriba, y al reves. --d es el escalonado,
+   en variable para que tambien lo hereden los elementos internos. */
 .rev,.rg > *{
-  opacity:0;transform:translateY(22px);
+  opacity:0;transform:translateY(var(--dy,22px));
   transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1);
+  transition-delay:var(--d,0ms);
 }
 .rev.vis,.rg.vis > *{opacity:1;transform:none}
-.rg.vis > *:nth-child(1){transition-delay:0ms}
-.rg.vis > *:nth-child(2){transition-delay:70ms}
-.rg.vis > *:nth-child(3){transition-delay:140ms}
-.rg.vis > *:nth-child(4){transition-delay:210ms}
-.rg.vis > *:nth-child(5){transition-delay:280ms}
-.rg.vis > *:nth-child(6){transition-delay:350ms}
-.rg.vis > *:nth-child(7){transition-delay:420ms}
-.rg.vis > *:nth-child(8){transition-delay:490ms}
+.rg > *:nth-child(1){--d:0ms}
+.rg > *:nth-child(2){--d:70ms}
+.rg > *:nth-child(3){--d:140ms}
+.rg > *:nth-child(4){--d:210ms}
+.rg > *:nth-child(5){--d:280ms}
+.rg > *:nth-child(6){--d:350ms}
+.rg > *:nth-child(7){--d:420ms}
+.rg > *:nth-child(8){--d:490ms}
 
 /* ---------- Parallax ----------
    Las fotos se montan mas altas que su marco para que el desplazamiento
@@ -880,36 +924,76 @@ footer{background:var(--navy);color:#fff}
   <div class="wrap">
     <div class="linea">
       <div class="hito">
-        <b>1925</b>
+        <span class="hito__l"><i></i></span>
+        <button class="hito__b" aria-expanded="false" aria-controls="hito-1925">
+          1925<i aria-hidden="true">+</i>
+          <span class="vo">Ver más sobre 1925</span>
+        </button>
         <p>Nace como Escuela Urbana de Niñas, en la Calle Bolívar, donde hoy está la Casa de la Cultura.</p>
+        <p class="hito__mas" id="hito-1925" hidden>Durante sus primeras décadas atendió exclusivamente a la población femenina de la localidad, y el edificio se fue modificando para albergar una matrícula que no paraba de crecer.</p>
       </div>
       <div class="hito">
-        <b>1945</b>
-        <p>Se inaugura la planta física, construida por el gobernador del Magdalena, departamento al que pertenecía Chiriguaná.</p>
+        <span class="hito__l"><i></i></span>
+        <button class="hito__b" aria-expanded="false" aria-controls="hito-1945">
+          1945<i aria-hidden="true">+</i>
+          <span class="vo">Ver más sobre 1945</span>
+        </button>
+        <p>Se inaugura la planta física propia de la escuela.</p>
+        <p class="hito__mas" id="hito-1945" hidden>La mandó construir el gobernador del Magdalena, departamento al que pertenecía Chiriguaná en esa época.</p>
       </div>
       <div class="hito">
-        <b>1979</b>
+        <span class="hito__l"><i></i></span>
+        <button class="hito__b" aria-expanded="false" aria-controls="hito-1979">
+          1979<i aria-hidden="true">+</i>
+          <span class="vo">Ver más sobre 1979</span>
+        </button>
         <p>Por orden gubernamental se constituye en Escuela Urbana Mixta N.º 2 y abre sus puertas a toda la población.</p>
+        <p class="hito__mas" id="hito-1979" hidden>El cambio buscaba atender mejor a una población estudiantil que crecía rápido en el municipio y sus alrededores.</p>
       </div>
       <div class="hito">
-        <b>1997</b>
+        <span class="hito__l"><i></i></span>
+        <button class="hito__b" aria-expanded="false" aria-controls="hito-1997">
+          1997<i aria-hidden="true">+</i>
+          <span class="vo">Ver más sobre 1997</span>
+        </button>
         <p>Abre el grado sexto y comienza la básica secundaria, para que los jóvenes de la región no tuvieran que irse.</p>
+        <p class="hito__mas" id="hito-1997" hidden>La idea era proyectar el colegio a nuevos horizontes para el sector menos favorecido de la región, al que le resultaba muy difícil entrar a otros centros educativos.</p>
       </div>
       <div class="hito">
-        <b>2000</b>
+        <span class="hito__l"><i></i></span>
+        <button class="hito__b" aria-expanded="false" aria-controls="hito-2000">
+          2000<i aria-hidden="true">+</i>
+          <span class="vo">Ver más sobre 2000</span>
+        </button>
         <p>La oferta llega hasta noveno grado, del preescolar en adelante.</p>
+        <p class="hito__mas" id="hito-2000" hidden>Faltaban todavía la media vocacional y el grado once, que llegarían con la conversión en institución educativa tres años después.</p>
       </div>
       <div class="hito">
-        <b>2003</b>
+        <span class="hito__l"><i></i></span>
+        <button class="hito__b" aria-expanded="false" aria-controls="hito-2003">
+          2003<i aria-hidden="true">+</i>
+          <span class="vo">Ver más sobre 2003</span>
+        </button>
         <p>La Resolución 350 del 9 de octubre le da el nombre de Rafael Argote Vega, en honor al docente que sirvió a los niños y jóvenes de la comunidad.</p>
+        <p class="hito__mas" id="hito-2003" hidden>La institución quedó conformada por la Escuela Urbana Mixta N.º 1, la Escuela Urbana de Niñas N.º 5 Nuestra Señora de Chiquinquirá y la Escuela Urbana Mixta N.º 6 Campo Soto.</p>
       </div>
       <div class="hito">
-        <b>2005</b>
+        <span class="hito__l"><i></i></span>
+        <button class="hito__b" aria-expanded="false" aria-controls="hito-2005">
+          2005<i aria-hidden="true">+</i>
+          <span class="vo">Ver más sobre 2005</span>
+        </button>
         <p>Primera jornada electoral entre sedes para elegir personero estudiantil.</p>
+        <p class="hito__mas" id="hito-2005" hidden>Votaron los estudiantes desde cuarto grado. El primer personero fue José Javier Díaz Quiroz, de noveno, y su trabajo marcó el camino de los que vinieron después.</p>
       </div>
       <div class="hito">
-        <b>2009</b>
+        <span class="hito__l"><i></i></span>
+        <button class="hito__b" aria-expanded="false" aria-controls="hito-2009">
+          2009<i aria-hidden="true">+</i>
+          <span class="vo">Ver más sobre 2009</span>
+        </button>
         <p>Primera promoción: 17 jóvenes reciben su diploma de bachiller.</p>
+        <p class="hito__mas" id="hito-2009" hidden>Con esa promoción la institución vio materializados sus esfuerzos por brindar un servicio educativo completo.</p>
       </div>
     </div>
   </div>
@@ -1177,6 +1261,19 @@ footer{background:var(--navy);color:#fff}
     });
   });
 
+  // --- Línea de tiempo: cada hito despliega su detalle ---
+  Array.prototype.forEach.call(document.querySelectorAll(".hito__b"), function(b){
+    var mas = document.getElementById(b.getAttribute("aria-controls"));
+    var anio = b.getAttribute("aria-controls").replace("hito-", "");
+    var voz = b.querySelector(".vo");
+    b.addEventListener("click", function(){
+      var abrir = mas.hidden;
+      mas.hidden = !abrir;
+      b.setAttribute("aria-expanded", abrir ? "true" : "false");
+      voz.textContent = (abrir ? "Ocultar el detalle de " : "Ver más sobre ") + anio;
+    });
+  });
+
   // --- Barra compacta al dejar atrás la portada ---
   var bar = document.getElementById("bar");
   var hero = document.getElementById("inicio");
@@ -1227,14 +1324,28 @@ footer{background:var(--navy);color:#fff}
     Array.prototype.forEach.call(document.querySelectorAll(GRUPOS), function(el){ el.classList.add("rg"); });
 
     if ("IntersectionObserver" in window){
-      var ver = new IntersectionObserver(function(entradas){
+      // Dos observadores en vez de uno: aparece en cuanto asoma, pero solo
+      // se vuelve a ocultar cuando ya salio del todo con holgura. Ese margen
+      // distinto entre entrada y salida evita el parpadeo en el borde.
+      var mostrar = new IntersectionObserver(function(entradas){
         entradas.forEach(function(e){
-          if (!e.isIntersecting) return;
-          e.target.classList.add("vis");
-          ver.unobserve(e.target);          // una sola vez: no reaparece al subir
+          if (e.isIntersecting) e.target.classList.add("vis");
         });
       }, { rootMargin: "0px 0px -10% 0px", threshold: 0.05 });
-      Array.prototype.forEach.call(document.querySelectorAll(".rev, .rg"), function(el){ ver.observe(el); });
+
+      var ocultar = new IntersectionObserver(function(entradas){
+        entradas.forEach(function(e){
+          if (e.isIntersecting) return;
+          // Si salio por arriba, al volver debe entrar desde arriba.
+          var r = e.target.getBoundingClientRect();
+          e.target.style.setProperty("--dy", r.top < 0 ? "-22px" : "22px");
+          e.target.classList.remove("vis");
+        });
+      }, { rootMargin: "100px 0px 100px 0px", threshold: 0 });
+
+      Array.prototype.forEach.call(document.querySelectorAll(".rev, .rg"), function(el){
+        mostrar.observe(el); ocultar.observe(el);
+      });
     } else {
       Array.prototype.forEach.call(document.querySelectorAll(".rev, .rg"), function(el){ el.classList.add("vis"); });
     }
