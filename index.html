@@ -27,7 +27,7 @@
   --ink-55:rgba(23,54,83,.62);
   --line:rgba(23,54,83,.10);
   --wrap:1480px;
-  --pad:clamp(20px,4vw,56px);
+  --pad:clamp(20px,5.5vw,104px);
   /* Un solo eje vertical: logo, menu, titular y encabezados de seccion
      arrancan todos en --pad. --medida limita el ancho de lectura. */
   --medida:1360px;
@@ -104,9 +104,10 @@ section[id],[id]{scroll-margin-top:84px}
 .nav a:hover span{background:rgba(20,127,132,.35)}
 .nav a[aria-current="page"]{font-weight:700}
 .nav a[aria-current="page"] span{background:var(--teal)}
-/* Se queda donde estaba: al borde derecho del contenedor de 1480 centrado. */
+/* Se queda donde estaba antes de soltar el encabezado: al borde derecho del
+   contenedor de 1480 centrado, que equivalia a --pad de 56px. */
 .head__cta{pointer-events:auto;font-size:14.5px;padding:14px 24px;
-  margin-right:max(0px,calc((100vw - var(--wrap)) / 2))}
+  margin-right:max(0px,calc((100vw - var(--wrap)) / 2 + 56px - var(--pad)))}
 .head__sp{flex:1}
 .burger{
   display:none;pointer-events:auto;align-items:center;gap:8px;
@@ -144,7 +145,7 @@ section[id],[id]{scroll-margin-top:84px}
 .bar .nav{margin-left:auto}
 .bar .nav a{padding:8px 10px;font-size:14px}
 .bar .btn{min-height:44px;padding:10px 20px;font-size:14px;
-  margin-right:max(0px,calc((100vw - var(--wrap)) / 2))}
+  margin-right:max(0px,calc((100vw - var(--wrap)) / 2 + 56px - var(--pad)))}
 
 /* ---------- Portada ---------- */
 .hero{position:relative;background:var(--cream);overflow:hidden}
