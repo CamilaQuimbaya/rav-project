@@ -187,22 +187,27 @@ html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
 }
 /* A la altura de la hoja la curva pasa por el 63,5% del alto del separador;
    lo que se resta es el trozo de base que queda oculto detras del relleno. */
-/* Velo superior: sin el, el azul del menu cae a 2,2:1 sobre las hojas
-   oscuras de la foto. Con el velo el peor caso sube a ~9:1. Ademas
-   desenfoca un poco, y la mascara hace que el desenfoque se desvanezca
-   en vez de cortarse con un borde recto. */
-.hero__velo{
+/* Velo superior. Sin el, el azul del menu cae a 2,2:1 sobre las hojas
+   oscuras de la foto; con el sube a ~9:1. La forma es una curva que sube
+   hacia la derecha y sale por arriba ANTES del boton, para no tocar esa
+   parte de la foto. Van dos capas: el color y, debajo, el desenfoque
+   recortado con la misma curva. El feGaussianBlur del borde es lo que
+   evita que la curva se corte con un filo duro. */
+.hero__velo,.hero__velo-b{
   position:absolute;left:0;right:0;top:0;z-index:4;pointer-events:none;
-  height:clamp(190px,25vh,340px);
-  background:linear-gradient(180deg,
-    rgba(247,245,239,.88) 0%,
-    rgba(247,245,239,.80) 32%,
-    rgba(247,245,239,.46) 64%,
-    rgba(247,245,239,0) 100%);
-  -webkit-backdrop-filter:blur(4px);
-  backdrop-filter:blur(4px);
-  -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 46%,rgba(0,0,0,0) 100%);
-  mask-image:linear-gradient(180deg,#000 0%,#000 46%,rgba(0,0,0,0) 100%);
+  height:clamp(200px,26vh,360px);
+}
+.hero__velo{display:block;width:100%}
+.hero__velo-b{
+  -webkit-backdrop-filter:blur(5px);
+  backdrop-filter:blur(5px);
+  -webkit-mask-image:var(--curva);
+  mask-image:var(--curva);
+  -webkit-mask-size:100% 100%;
+  mask-size:100% 100%;
+  -webkit-mask-repeat:no-repeat;
+  mask-repeat:no-repeat;
+  --curva:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 360' preserveAspectRatio='none'%3E%3Cfilter id='b' x='-25%25' y='-25%25' width='150%25' height='150%25'%3E%3CfeGaussianBlur stdDeviation='24'/%3E%3C/filter%3E%3Cpath d='M1022 0C935 78 862 148 781 190C701 232 640 272 557 320C380 342 190 347 0 347L0 0Z' fill='%23fff' filter='url(%23b)'/%3E%3C/svg%3E");
 }
 
 .hero__leaf{
@@ -637,7 +642,7 @@ footer{background:var(--navy);color:#fff}
   .burger{display:flex;margin-left:auto}
   .bar .nav{display:none}
   .bar .btn{margin-left:auto}
-  .hero__ph,.hero__fade,.hero__leaf,.hero__velo{display:none}
+  .hero__ph,.hero__fade,.hero__leaf,.hero__velo,.hero__velo-b{display:none}
   .hero__ph--m{display:block}
   /* La regla de arriba tambien alcanzaba a la hoja del bloque movil. */
   .hero__ph--m .hero__leaf{display:block;bottom:-4px;z-index:2}
@@ -724,7 +729,20 @@ footer{background:var(--navy);color:#fff}
          sizes="64vw" alt="" aria-hidden="true" width="1600" height="900">
   </div>
   <div class="hero__fade" aria-hidden="true"></div>
-  <div class="hero__velo" aria-hidden="true"></div>
+  <div class="hero__velo-b" aria-hidden="true"></div>
+  <svg class="hero__velo" viewBox="0 0 1440 360" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="veloG" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#F7F5EF" stop-opacity=".90"/>
+        <stop offset=".45" stop-color="#F7F5EF" stop-opacity=".82"/>
+        <stop offset="1" stop-color="#F7F5EF" stop-opacity=".52"/>
+      </linearGradient>
+      <filter id="veloB" x="-25%" y="-25%" width="150%" height="150%">
+        <feGaussianBlur stdDeviation="24"/>
+      </filter>
+    </defs>
+    <path d="M1022 0C935 78 862 148 781 190C701 232 640 272 557 320C380 342 190 347 0 347L0 0Z" fill="url(#veloG)" filter="url(#veloB)"/>
+  </svg>
   <img class="hero__leaf" src="assets/hojas.svg" alt="" aria-hidden="true">
 
   <header class="head">
