@@ -290,7 +290,7 @@ html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
    antes de llegar a la linea de tiempo. Con texto blanco encima la foto no
    puede pasar del 16% de opacidad; como la mascara la apaga justo donde
    vive el texto, se puede subir al 26% donde no estorba. */
-.hist{position:relative}
+.hist{position:relative;min-height:clamp(300px,36vw,500px);display:flex;align-items:center}
 .hist__ph{
   position:absolute;top:0;right:0;z-index:0;pointer-events:none;
   width:min(62%,1040px);height:clamp(340px,40vw,560px);
@@ -314,14 +314,17 @@ html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
 .hist__b h2 strong{font-weight:700}
 .hist__b p{font-size:17px;line-height:1.5;color:rgba(255,255,255,.88);max-width:52ch;text-wrap:pretty}
 .hist__note{
-  align-self:flex-start;margin-top:4px;
+  position:absolute;z-index:2;
+  right:clamp(14px,5vw,96px);bottom:clamp(16px,4vw,54px);
+  max-width:min(46%,340px);
   font-family:var(--script);font-size:clamp(21px,1.9vw,28px);font-weight:600;
-  line-height:1.1;color:var(--gold);text-align:left;
-  transform:rotate(-3deg);transform-origin:0 50%;
-  transition:color .2s,transform .2s;
+  line-height:1.08;color:var(--navy);text-align:right;
+  transform:rotate(-6deg);transform-origin:100% 100%;
+  background:rgba(247,245,239,.92);border-radius:10px;padding:9px 15px;
+  transition:background .18s,transform .18s;
 }
-.hist__note:hover{color:#F3DFAF;transform:rotate(-3deg) translateY(-2px)}
-.hist__note svg{display:block;width:78%;height:9px;margin-top:3px}
+.hist__note:hover{background:#F7F5EF;color:var(--navy);transform:rotate(-6deg) translateY(-2px)}
+.hist__note svg{display:block;width:100%;height:9px;margin-top:3px}
 .hist__leaf{
   position:relative;z-index:1;width:76px;opacity:.55;
   align-self:flex-start;margin-top:6px;
@@ -657,6 +660,13 @@ footer{background:var(--navy);color:#fff}
   .shead,.esencia,.niveles,.noti,.acc,.noti__top,.contacto,.valores,.proyectos,.sedes{padding-left:0;margin-left:0}
   .hist__ph{width:100%;height:clamp(260px,46vw,380px);opacity:.2}
   .hist__b{max-width:none}
+  .hist{min-height:0;display:block}
+  .hist__note{
+    position:static;max-width:none;text-align:left;
+    transform:rotate(-3deg);transform-origin:0 50%;
+    display:inline-block;margin-top:18px;
+  }
+  .hist__note:hover{transform:rotate(-3deg)}
 }
 @media (max-width:760px){
   /* En una sola columna la linea de tiempo se lee como lista vertical. */
@@ -985,12 +995,12 @@ footer{background:var(--navy);color:#fff}
       <h2 id="t-hist"><strong>Desde 1925,</strong> parte de la historia <strong>de Chiriguaná</strong></h2>
       <div class="rule"></div>
       <p>Iniciamos como Escuela Urbana de Niñas. Desde 2003 llevamos el nombre de Rafael Argote Vega, un docente que trabajó con los niños y jóvenes de la comunidad.</p>
-      <a class="hist__note" href="#institucion">
-        Más de una historia,<br>la historia de nuestra gente.
-        <svg viewBox="0 0 200 10" fill="none" aria-hidden="true" preserveAspectRatio="none"><path d="M2 7C50 2 130 1 198 4" stroke="#E5B653" stroke-width="2.6" stroke-linecap="round"/></svg>
-      </a>
       <img class="hist__leaf" src="assets/hojas.svg" alt="" aria-hidden="true">
     </div>
+    <a class="hist__note" href="#institucion">
+      Más de una historia,<br>la historia de nuestra gente.
+      <svg viewBox="0 0 200 10" fill="none" aria-hidden="true" preserveAspectRatio="none"><path d="M2 7C50 2 130 1 198 4" stroke="#E5B653" stroke-width="2.6" stroke-linecap="round"/></svg>
+    </a>
   </div>
   <div class="wrap">
     <div class="linea">
