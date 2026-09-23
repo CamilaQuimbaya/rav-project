@@ -5,16 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Institución Educativa Rafael Argote Vega</title>
 <meta name="description" content="Institución Educativa Rafael Argote Vega, Chiriguaná, Cesar. Formamos en valores a niños, niñas y jóvenes con pensamiento crítico y un proyecto de vida propio.">
-<link rel="icon" href="assets/logo-rav.svg" type="image/svg+xml">
+<link rel="icon" href="assets/escudo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600&family=Work+Sans:wght@400;500;600&family=Caveat:wght@500;600&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#173653;
   --navy-d:#0d2338;
-  --teal:#147F84;
-  --teal-d:#116e72;
+  --teal:#178C91;        /* turquesa de marca: superficies y trazos */
+  --teal-ink:#0F6E72;    /* manual p.6: el unico que pasa AA como texto */
+  --teal-d:#0c5f63;
   --mint:#E6F4F3;
   --mint-l:#E3F2F2;
   --gold:#E5B653;
@@ -22,7 +23,7 @@
   --cream:#F7F5EF;
   --cream-d:#FBF1DC;
   --ink:#173653;
-  --ink-70:rgba(23,54,83,.78);
+  --ink-70:#4a6076;
   --ink-55:rgba(23,54,83,.62);
   --line:rgba(23,54,83,.10);
   --wrap:1480px;
@@ -31,21 +32,25 @@
   /* Ritmo vertical: una sola escala para todas las secciones. */
   --sect:clamp(60px,7.5vw,104px);
   --script:Caveat,"Segoe Script","Bradley Hand",cursive;
+  /* Manual p.7: Sora titulares, Work Sans cuerpo. Respaldo DejaVu/Arial. */
+  --display:Sora,"DejaVu Sans",Arial,sans-serif;
+  --sans:"Work Sans","DejaVu Sans",Arial,sans-serif;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{
-  margin:0;background:#fff;color:var(--ink);
-  font-family:"DejaVu Sans",Verdana,Arial,sans-serif;
+  margin:0;background:var(--cream);color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
   -webkit-font-smoothing:antialiased;
   overflow-x:hidden;
 }
 img{max-width:100%}
-a{color:var(--teal);text-decoration:none}
+a{color:var(--teal-ink);text-decoration:none}
 a:hover{color:var(--navy)}
 button{font-family:inherit}
-:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:6px}
-h1,h2,h3{margin:0}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:6px}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:600;line-height:1.15}
 p{margin:0}
 .wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--pad)}
 /* Todo destino de ancla despeja la barra fija. */
@@ -61,12 +66,12 @@ section[id],[id]{scroll-margin-top:84px}
 /* ---------- Botones ---------- */
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:10px;
-  min-height:50px;padding:12px 26px;border-radius:30px;
-  font-size:15px;font-weight:700;white-space:nowrap;
+  min-height:50px;padding:12px 26px;border-radius:999px;
+  font-size:15px;font-weight:600;white-space:nowrap;
   border:0;cursor:pointer;transition:background .18s,color .18s,transform .18s,box-shadow .18s;
 }
 .btn svg{width:20px;height:20px;flex:none}
-.btn--teal{background:var(--teal);color:#fff;box-shadow:0 6px 18px rgba(23,54,83,.18)}
+.btn--teal{background:var(--teal-ink);color:#fff;box-shadow:0 6px 18px rgba(23,54,83,.18)}
 .btn--teal:hover{background:var(--teal-d);color:#fff;transform:translateY(-1px)}
 .btn--line{background:rgba(255,255,255,.7);border:1.5px solid var(--navy);color:var(--navy);font-weight:400}
 .btn--line:hover{background:var(--navy);color:#fff}
@@ -80,13 +85,15 @@ section[id],[id]{scroll-margin-top:84px}
   padding:14px var(--pad);display:flex;align-items:center;gap:28px;
 }
 .head__logo{flex:none;pointer-events:auto;display:block}
-.head__logo img{height:80px;width:auto;display:block}
+/* Manual p.4: area de proteccion x = 1/4 del ancho del escudo. */
+.head__logo{padding:14px}
+.head__logo img{height:72px;width:auto;display:block}
 .nav{display:flex;align-items:center;gap:6px;margin-left:clamp(10px,3vw,60px);pointer-events:auto}
 .nav a{
   color:var(--navy);font-size:14.5px;padding:10px 12px;
   display:flex;flex-direction:column;align-items:center;gap:6px;white-space:nowrap;
 }
-.nav a:hover{color:var(--teal)}
+.nav a:hover{color:var(--teal-ink)}
 .nav a span{width:32px;height:3px;border-radius:2px;background:transparent;transition:background .18s}
 .nav a:hover span{background:rgba(20,127,132,.35)}
 .nav a[aria-current="page"]{font-weight:700}
@@ -125,7 +132,7 @@ section[id],[id]{scroll-margin-top:84px}
   max-width:var(--wrap);margin:0 auto;padding:8px var(--pad);
   display:flex;align-items:center;gap:20px;min-height:64px;
 }
-.bar__in img{height:44px;width:auto;flex:none}
+.bar__in img{height:56px;width:auto;flex:none}
 .bar .nav{margin-left:auto}
 .bar .nav a{padding:8px 10px;font-size:14px}
 .bar .btn{min-height:44px;padding:10px 20px;font-size:14px}
@@ -148,15 +155,15 @@ section[id],[id]{scroll-margin-top:84px}
   max-width:560px;display:flex;flex-direction:column;gap:14px;
   padding-left:var(--inset);pointer-events:auto;
 }
-.eyebrow{font-size:13px;font-weight:700;letter-spacing:.34em;color:rgba(23,54,83,.85)}
+.eyebrow{font-family:var(--sans);font-size:14px;font-weight:600;letter-spacing:.34em;color:var(--ink-70)}
 .hero h1{display:flex;flex-direction:column;gap:6px}
-.hero h1 .n{font-size:clamp(34px,3.6vw,52px);line-height:1.02;font-weight:700;letter-spacing:-.035em}
-.hero h1 .c{font-size:clamp(18px,1.5vw,21px);font-weight:400;color:var(--teal);letter-spacing:.04em}
+.hero h1 .n{font-size:clamp(34px,3.6vw,52px);line-height:1.02;font-weight:600;letter-spacing:-.035em}
+.hero h1 .c{font-size:clamp(20px,1.5vw,24px);font-weight:400;color:var(--teal-ink);letter-spacing:.04em;font-family:var(--display);line-height:1.25}
 .rule{width:30px;height:3px;background:var(--gold);border-radius:2px}
 .lema{display:flex;flex-direction:column;align-self:flex-start}
 .lema b{font-family:var(--script);font-size:clamp(30px,2.4vw,36px);font-weight:600;line-height:1.05}
 .lema svg{width:88%;height:12px;margin-left:4%}
-.hero__lead{margin-top:6px;font-size:16.5px;line-height:1.6;color:rgba(23,54,83,.88);max-width:440px;text-wrap:pretty}
+.hero__lead{margin-top:6px;font-size:18px;line-height:1.5;color:rgba(23,54,83,.88);max-width:440px;text-wrap:pretty}
 .hero__cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
 .hero__ph--m{display:none;position:relative;height:clamp(260px,56vw,420px)}
 .hero__ph--m img{width:100%;height:100%;object-fit:cover;display:block}
@@ -164,10 +171,10 @@ section[id],[id]{scroll-margin-top:84px}
 
 /* ---------- Encabezado de sección ---------- */
 .sect{padding-block:var(--sect)}
-.sect--cream{background:var(--cream)}
+.sect--alt{background:#fff}
 .shead{display:flex;flex-direction:column;gap:14px;max-width:620px;margin-bottom:clamp(32px,4vw,52px);padding-left:var(--inset)}
-.shead h2{font-size:clamp(27px,2.4vw,34px);letter-spacing:-.03em;line-height:1.15}
-.shead p{font-size:16.5px;line-height:1.6;color:var(--ink-70);text-wrap:pretty}
+.shead h2{font-size:clamp(28px,2.4vw,40px);letter-spacing:-.03em;line-height:1.15}
+.shead p{font-size:18px;line-height:1.5;color:var(--ink-70);text-wrap:pretty}
 .chip{
   align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.08em;
   color:var(--gold-d);border:1px dashed #C9A13E;background:var(--cream-d);
@@ -177,40 +184,40 @@ section[id],[id]{scroll-margin-top:84px}
 /* ---------- Esencia: misión y visión ---------- */
 .esencia{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:24px;padding-left:var(--inset)}
 .card-e{
-  background:var(--mint);border-radius:18px;padding:32px 34px;
+  background:var(--mint);border-radius:14px;padding:32px 34px;
   display:flex;gap:26px;align-items:flex-start;
   position:relative;overflow:hidden;
 }
 .card-e__art{width:150px;height:auto;flex:none;margin:-8px -6px 0 -14px}
 .card-e__b{display:flex;flex-direction:column;gap:12px;min-width:0;position:relative;z-index:1}
-.card-e h3{font-size:22px;letter-spacing:-.01em}
-.card-e p{font-size:15.5px;line-height:1.65;color:rgba(23,54,83,.86);text-wrap:pretty}
+.card-e h3{font-size:24px;letter-spacing:-.01em;line-height:1.25}
+.card-e p{font-size:16px;line-height:1.5;color:var(--ink-70);text-wrap:pretty}
 .card-e__more{
   margin-top:2px;padding-top:12px;border-top:1px solid rgba(23,54,83,.14);
   font-size:15px;line-height:1.65;
 }
 .card-e__more[hidden]{display:none}
 .card-e__t{
-  align-self:flex-start;border:0;background:none;color:var(--teal);
+  align-self:flex-start;border:0;background:none;color:var(--teal-ink);
   font-size:14.5px;font-weight:700;cursor:pointer;padding:6px 0;
 }
-.card-e__t:hover{color:var(--teal-d)}
+.card-e__t:hover{color:var(--teal-d);text-decoration:underline}
 .card-e__leaf{position:absolute;right:-14px;bottom:-22px;width:92px;opacity:.6;transform:scaleX(-1);pointer-events:none}
 .card-e__star{position:absolute;right:20px;top:18px;width:52px;pointer-events:none}
 
 /* ---------- Oferta ---------- */
 .oferta{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px;padding-left:var(--inset)}
 .card-o{
-  background:#fff;border:1px solid rgba(23,54,83,.08);border-radius:16px;
+  background:#fff;border:1px solid rgba(23,54,83,.08);border-radius:14px;
   padding:28px 28px 26px;display:flex;flex-direction:column;gap:14px;
   color:var(--ink);box-shadow:0 2px 10px rgba(23,54,83,.05);
   transition:border-color .18s,box-shadow .18s,transform .18s;
 }
 .card-o--link:hover{border-color:var(--teal);color:var(--ink);transform:translateY(-3px);box-shadow:0 14px 32px rgba(23,54,83,.10)}
 .card-o img{width:104px;height:auto;margin:-10px -8px -4px -12px}
-.card-o h3{font-size:18px}
-.card-o p{font-size:14.5px;line-height:1.6;color:var(--ink-70);flex:1;text-wrap:pretty}
-.card-o__go{display:flex;align-items:center;gap:10px;font-size:14.5px;font-weight:700;color:var(--teal)}
+.card-o h3{font-size:20px;line-height:1.25}
+.card-o p{font-size:16px;line-height:1.5;color:var(--ink-70);flex:1;text-wrap:pretty}
+.card-o__go{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:var(--teal-ink)}
 .card-o__go i{
   width:38px;height:38px;border-radius:50%;background:var(--mint-l);
   display:flex;align-items:center;justify-content:center;font-style:normal;
@@ -222,7 +229,7 @@ section[id],[id]{scroll-margin-top:84px}
 .hist{padding-inline:clamp(12px,3vw,48px)}
 .hist__box{
   position:relative;max-width:var(--wrap);margin:0 auto;
-  border-radius:18px;overflow:hidden;background:var(--navy);
+  border-radius:14px;overflow:hidden;background:var(--navy);
   min-height:clamp(300px,34vw,400px);display:flex;align-items:center;
 }
 .hist__ph{position:absolute;top:0;right:0;bottom:0;width:56%}
@@ -238,7 +245,7 @@ section[id],[id]{scroll-margin-top:84px}
 }
 .hist__b h2{font-size:clamp(22px,2.1vw,29px);line-height:1.28;font-weight:400}
 .hist__b h2 strong{font-weight:700}
-.hist__b p{font-size:15.5px;line-height:1.7;color:rgba(255,255,255,.92);max-width:460px;text-wrap:pretty}
+.hist__b p{font-size:17px;line-height:1.5;color:rgba(255,255,255,.92);max-width:460px;text-wrap:pretty}
 .hist__leaf{position:absolute;left:10px;bottom:-14px;width:78px;opacity:.5;pointer-events:none;z-index:1}
 .hist__note{
   position:absolute;z-index:3;
@@ -256,7 +263,7 @@ section[id],[id]{scroll-margin-top:84px}
 /* ---------- Noticias ---------- */
 .noti{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:24px;padding-left:var(--inset)}
 .card-n{
-  background:#fff;border:1px solid rgba(23,54,83,.08);border-radius:16px;
+  background:#fff;border:1px solid rgba(23,54,83,.08);border-radius:14px;
   overflow:hidden;display:flex;flex-direction:column;
   box-shadow:0 2px 10px rgba(23,54,83,.05);transition:box-shadow .18s,transform .18s;
 }
@@ -269,9 +276,9 @@ section[id],[id]{scroll-margin-top:84px}
   border:1px dashed #C9A13E;border-radius:14px;padding:4px 9px;
 }
 .card-n__b{padding:22px 24px 24px;display:flex;flex-direction:column;gap:9px;flex:1}
-.card-n__k{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--teal)}
-.card-n h3{font-size:17px;line-height:1.35;text-wrap:pretty}
-.card-n p{font-size:14.5px;line-height:1.6;color:var(--ink-70);flex:1;text-wrap:pretty}
+.card-n__k{font-size:14px;font-weight:600;letter-spacing:.14em;color:var(--teal-ink)}
+.card-n h3{font-size:20px;line-height:1.25;text-wrap:pretty}
+.card-n p{font-size:16px;line-height:1.5;color:var(--ink-70);flex:1;text-wrap:pretty}
 .card-n a{font-size:14.5px;font-weight:700;margin-top:4px}
 .noti__top{display:flex;justify-content:flex-end;padding-left:var(--inset);margin-bottom:14px}
 .noti__top a{font-size:14.5px;font-weight:700}
@@ -285,12 +292,12 @@ section[id],[id]{scroll-margin-top:84px}
 }
 a.acc-i:hover{border-color:var(--teal);color:var(--ink);transform:translateY(-2px)}
 .acc-i i{
-  width:46px;height:46px;border-radius:12px;background:var(--mint-l);color:var(--teal);
+  width:46px;height:46px;border-radius:12px;background:var(--mint-l);color:var(--teal-ink);
   display:flex;align-items:center;justify-content:center;flex:none;
 }
 .acc-i svg{width:22px;height:22px}
-.acc-i b{display:block;font-size:15.5px}
-.acc-i small{display:block;font-size:13px;color:var(--ink-55);margin-top:3px}
+.acc-i b{display:block;font-size:17px;font-weight:600}
+.acc-i small{display:block;font-size:15px;color:var(--ink-70);margin-top:3px}
 .contacto{
   margin-top:26px;padding:26px 28px;border-radius:14px;background:var(--mint);
   display:flex;flex-wrap:wrap;gap:16px 34px;align-items:center;
@@ -305,7 +312,8 @@ footer{background:var(--navy);color:#fff}
   max-width:var(--wrap);margin:0 auto;padding:clamp(34px,4vw,48px) var(--pad);
   display:flex;align-items:center;gap:26px 34px;flex-wrap:wrap;
 }
-.foot__logo img{height:86px;width:auto;display:block}
+.foot__logo{padding:24px}
+.foot__logo img{height:96px;width:auto;display:block}
 .foot nav{display:flex;flex-wrap:wrap;align-items:center;flex:1 1 480px;justify-content:center;gap:2px}
 .foot nav a{color:#fff;font-size:13px;padding:8px 18px;white-space:nowrap;border-left:1px solid rgba(255,255,255,.3)}
 .foot nav a:first-child{border-left:0}
@@ -380,7 +388,7 @@ footer{background:var(--navy);color:#fff}
 <!-- Barra compacta: aparece al dejar atrás la portada -->
 <div class="bar" id="bar" aria-hidden="true">
   <div class="bar__in">
-    <a href="#inicio" aria-label="Rafael Argote Vega, inicio"><img src="assets/logo-rav.svg" alt=""></a>
+    <a href="#inicio" aria-label="Rafael Argote Vega, inicio"><img src="assets/escudo.svg" alt="" width="44" height="56"></a>
     <nav class="nav" aria-label="Secciones">
       <a href="#institucion">Nuestra institución</a>
       <a href="#oferta">Oferta educativa</a>
@@ -404,7 +412,7 @@ footer{background:var(--navy);color:#fff}
   <header class="head">
     <div class="head__in">
       <a class="head__logo" href="#inicio" aria-label="Rafael Argote Vega, inicio">
-        <img src="assets/logo-rav.svg" alt="Rafael Argote Vega">
+        <img src="assets/escudo.svg" alt="Rafael Argote Vega" width="56" height="72">
       </a>
       <nav class="nav" aria-label="Principal">
         <a href="#inicio" aria-current="page">Inicio<span></span></a>
@@ -506,7 +514,7 @@ footer{background:var(--navy);color:#fff}
 </section>
 
 <!-- ---------- Oferta ---------- -->
-<section class="sect sect--cream" id="oferta" aria-labelledby="t-oferta">
+<section class="sect sect--alt" id="oferta" aria-labelledby="t-oferta">
   <div class="wrap">
     <div class="shead">
       <h2 id="t-oferta">Aprender y crecer juntos</h2>
@@ -622,7 +630,7 @@ footer{background:var(--navy);color:#fff}
 </section>
 
 <!-- ---------- Accesos y contacto ---------- -->
-<section class="sect sect--cream" id="documentos" aria-labelledby="t-acc">
+<section class="sect sect--alt" id="documentos" aria-labelledby="t-acc">
   <div class="wrap">
     <div class="shead">
       <h2 id="t-acc">Documentos y contacto</h2>
@@ -658,7 +666,7 @@ footer{background:var(--navy);color:#fff}
 <footer>
   <div class="foot">
     <a class="foot__logo" href="#inicio" aria-label="Rafael Argote Vega, volver al inicio">
-      <img src="assets/logo-rav-negativo.svg" alt="Rafael Argote Vega">
+      <img src="assets/escudo-blanco.svg" alt="Rafael Argote Vega" width="75" height="96">
     </a>
     <nav aria-label="Pie de página">
       <a href="#inicio">Inicio</a>
