@@ -414,8 +414,10 @@ footer{background:var(--navy);color:#fff}
 .promesa{
   margin-top:clamp(34px,4vw,52px);padding-top:clamp(26px,3vw,36px);
   border-top:2px solid var(--gold);
-  display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px;
+  display:flex;flex-wrap:wrap;align-items:center;gap:18px 32px;
 }
+.promesa__t{display:flex;flex-direction:column;gap:8px;flex:1 1 380px}
+.promesa__il{width:clamp(130px,14vw,178px);height:auto;flex:none;margin-left:auto}
 .promesa span{
   font-family:var(--sans);font-size:13px;font-weight:600;
   letter-spacing:.14em;color:var(--ink-70);
@@ -441,6 +443,9 @@ footer{background:var(--navy);color:#fff}
   background:var(--cream-d);border-radius:999px;padding:5px 13px;
 }
 .nivel p{font-size:15px;line-height:1.5;color:var(--ink-70);text-wrap:pretty}
+/* Altura fija y ancho libre: las ilustraciones tienen proporciones distintas
+   y asi sus bases quedan alineadas entre tarjetas. */
+.nivel__il{height:104px;width:auto;align-self:flex-start;margin-bottom:6px}
 .nota{
   margin-top:26px;font-size:15px;line-height:1.55;color:var(--ink-70);
   padding-left:16px;border-left:2px solid var(--gold);max-width:70ch;
@@ -475,6 +480,11 @@ footer{background:var(--navy);color:#fff}
 .proy span{font-size:14.5px;line-height:1.5;color:var(--ink-70)}
 
 /* ---------- Sedes ---------- */
+/* Encabezado con ilustracion al lado */
+.shead-il{display:flex;align-items:center;gap:clamp(20px,3vw,44px);flex-wrap:wrap}
+.shead-il .shead{flex:1 1 420px;margin-bottom:0}
+.shead-il img{width:clamp(120px,13vw,168px);height:auto;flex:none;margin-left:auto}
+
 .sedes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:20px}
 .sede{
   background:#fff;border:1px solid var(--line);border-radius:14px;
@@ -522,6 +532,8 @@ footer{background:var(--navy);color:#fff}
   .hito b{font-size:22px}
   .proy{padding:22px 22px}
   .nivel{padding:24px 22px}
+  .nivel__il{height:84px}
+  .promesa__il,.shead-il img{margin-left:0}
   .card-e{flex-direction:column;gap:16px;padding:26px 24px}
   .card-e__art{width:120px;margin:0}
   .card-e__leaf,.card-e__star{display:none}
@@ -726,8 +738,11 @@ footer{background:var(--navy);color:#fff}
         </article>
       </div>
       <div class="promesa">
-        <span>NUESTRA PROMESA</span>
-        <b>Tradición que inspira. <em>Educación que avanza.</em></b>
+        <div class="promesa__t">
+          <span>NUESTRA PROMESA</span>
+          <b>Tradición que inspira. <em>Educación que avanza.</em></b>
+        </div>
+        <img class="promesa__il" src="assets/il-libros-antorcha.png" alt="" aria-hidden="true" width="480" height="320">
       </div>
     </div>
   </div>
@@ -743,30 +758,35 @@ footer{background:var(--navy);color:#fff}
     </div>
     <div class="niveles">
       <article class="nivel">
+        <img class="nivel__il" src="assets/il-planta-libro.png" alt="" aria-hidden="true" width="360" height="303">
         <span class="nivel__n">01</span>
         <h3>Jardín</h3>
         <span class="nivel__g">Preescolar</span>
         <p>El primer encuentro con la vida escolar, en un entorno de cuidado y juego.</p>
       </article>
       <article class="nivel">
+        <img class="nivel__il" src="assets/il-cuaderno-check.png" alt="" aria-hidden="true" width="360" height="321">
         <span class="nivel__n">02</span>
         <h3>Transición</h3>
         <span class="nivel__g">Preescolar</span>
         <p>El año que prepara el paso a la primaria y afianza los primeros aprendizajes.</p>
       </article>
       <article class="nivel">
+        <img class="nivel__il" src="assets/il-globo-libros.png" alt="" aria-hidden="true" width="360" height="356">
         <span class="nivel__n">03</span>
         <h3>Básica Primaria</h3>
         <span class="nivel__g">1.º a 5.º</span>
         <p>La base: lectura, escritura, pensamiento matemático y convivencia.</p>
       </article>
       <article class="nivel">
+        <img class="nivel__il" src="assets/il-microscopio.png" alt="" aria-hidden="true" width="360" height="431">
         <span class="nivel__n">04</span>
         <h3>Básica Secundaria</h3>
         <span class="nivel__g">6.º a 9.º</span>
         <p>Se amplían las áreas y crece la autonomía en el trabajo escolar.</p>
       </article>
       <article class="nivel">
+        <img class="nivel__il" src="assets/il-bombilla-lapiz.png" alt="" aria-hidden="true" width="360" height="434">
         <span class="nivel__n">05</span>
         <h3>Media Vocacional</h3>
         <span class="nivel__g">10.º y 11.º</span>
@@ -973,10 +993,13 @@ footer{background:var(--navy);color:#fff}
       </article>
     </div>
 
-    <div class="shead" style="margin-top:clamp(56px,6vw,88px);margin-bottom:clamp(26px,3vw,36px)">
-      <h2 id="contacto">Documentos y contacto</h2>
-      <div class="rule"></div>
-      <p>Lo que las familias suelen necesitar, a un clic.</p>
+    <div class="shead-il" style="margin-top:clamp(56px,6vw,88px);margin-bottom:clamp(26px,3vw,36px)">
+      <div class="shead">
+        <h2 id="contacto">Documentos y contacto</h2>
+        <div class="rule"></div>
+        <p>Lo que las familias suelen necesitar, a un clic.</p>
+      </div>
+      <img src="assets/il-laptop-libro.png" alt="" aria-hidden="true" width="360" height="272">
     </div>
     <div class="acc">
 

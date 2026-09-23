@@ -18,7 +18,8 @@ assets/
   comunidad-1600/800.jpg      foto de portada
   sede-1600/800.jpg           foto de la franja de historia
   hojas / estrellas / mision-libro / vision-meta /
-  oferta / proyectos / valores .svg        ilustraciones de marca
+  oferta / proyectos / valores / ramas .svg    ilustraciones de marca
+  il-*.png                    ilustraciones grandes (niveles, promesa, documentos)
 plataforma/index.html         la plataforma educativa (prototipo) — NO SE TOCA
 .nojekyll                     evita que GitHub Pages procese el sitio con Jekyll
 ```
@@ -36,6 +37,12 @@ lo que sirve `srcset`. El sitio completo pesa 1,4 MB en vez de 8,1 MB.
 
 El escudo es el mismo archivo que usa la plataforma: se verificó comparando la
 geometría de los 69 trazados.
+
+Las ilustraciones `il-*.png` salieron de las láminas entregadas por la diseñadora.
+Venían en tiras de tres sobre fondo marfil; se separaron, se les quitó el fondo
+con relleno por inundación desde los bordes (para no vaciar los blancos
+interiores de páginas y bombilla) y se redujeron a paleta indexada de 64 colores.
+Pesaban 1,5 MB en total y quedaron en 84 KB.
 
 ## Marca
 
