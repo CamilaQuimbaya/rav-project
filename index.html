@@ -183,37 +183,23 @@ html[data-intro].intro-fin .intro{opacity:0;pointer-events:none}
 
 /* ---------- Portada ---------- */
 .hero{position:relative;background:var(--cream);overflow:hidden}
-.hero__ph{position:absolute;top:0;right:0;bottom:0;width:64%;overflow:hidden}
-.hero__ph img{width:100%;object-fit:cover;display:block}
-.hero__fade{
-  position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(90deg,var(--cream) 0%,var(--cream) 36%,rgba(247,245,239,.85) 42%,rgba(247,245,239,0) 56%);
-}
-/* A la altura de la hoja la curva pasa por el 63,5% del alto del separador;
-   lo que se resta es el trozo de base que queda oculto detras del relleno. */
-/* Velo superior. Sin el, el azul del menu cae a 2,2:1 sobre las hojas
-   oscuras de la foto; con el sube a ~9:1. La forma es una curva que sube
-   hacia la derecha y sale por arriba ANTES del boton, para no tocar esa
-   parte de la foto. Van dos capas: el color y, debajo, el desenfoque
-   recortado con la misma curva. El feGaussianBlur del borde es lo que
-   evita que la curva se corte con un filo duro. */
-.hero__velo,.hero__velo-b{
-  position:absolute;left:0;right:0;top:0;z-index:4;pointer-events:none;
-  height:clamp(200px,26vh,360px);
-}
-.hero__velo{display:block;width:100%}
-.hero__velo-b{
-  -webkit-backdrop-filter:blur(9px);
-  backdrop-filter:blur(9px);
-  -webkit-mask-image:var(--curva);
-  mask-image:var(--curva);
+/* La foto no termina en una linea recta: se recorta con una curva que baja
+   desde arriba a la derecha hacia abajo a la izquierda. El feGaussianBlur de
+   la mascara es lo que hace que el borde se desvanezca en vez de cortarse.
+   Con esto el menu queda sobre crema y ya no necesita velo. */
+.hero__ph{
+  position:absolute;top:0;right:0;bottom:0;width:64%;overflow:hidden;
+  -webkit-mask-image:var(--corte);
+  mask-image:var(--corte);
   -webkit-mask-size:100% 100%;
   mask-size:100% 100%;
   -webkit-mask-repeat:no-repeat;
   mask-repeat:no-repeat;
-  --curva:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 360' preserveAspectRatio='none'%3E%3Cfilter id='b' x='-25%25' y='-25%25' width='150%25' height='150%25'%3E%3CfeGaussianBlur stdDeviation='24'/%3E%3C/filter%3E%3Cpath d='M1022 0C935 78 862 148 781 190C701 232 640 272 557 320C380 342 190 347 0 347L0 0Z' fill='%23fff' filter='url(%23b)'/%3E%3C/svg%3E");
+  --corte:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 1000' preserveAspectRatio='none'%3E%3Cfilter id='c' x='-30%25' y='-30%25' width='160%25' height='160%25'%3E%3CfeGaussianBlur stdDeviation='46'/%3E%3C/filter%3E%3Cpath d='M523 0C455 70 390 170 340 300C295 420 255 620 232 780C220 870 212 940 210 1000L1000 1000L1000 0Z' fill='%23fff' filter='url(%23c)'/%3E%3C/svg%3E");
 }
-
+.hero__ph img{width:100%;object-fit:cover;display:block}
+/* A la altura de la hoja la curva pasa por el 63,5% del alto del separador;
+   lo que se resta es el trozo de base que queda oculto detras del relleno. */
 .hero__leaf{
   position:absolute;left:40%;width:128px;z-index:6;pointer-events:none;
   bottom:calc(clamp(72px,8vw,148px) * .635 - 8px);
@@ -652,7 +638,7 @@ footer{background:var(--navy);color:#fff}
   .bar__logo .lg-mark{display:block}
   .bar__in{min-height:70px;padding:8px var(--pad)}
   section[id],[id]{scroll-margin-top:86px}
-  .hero__ph,.hero__fade,.hero__leaf,.hero__velo,.hero__velo-b{display:none}
+  .hero__ph,.hero__leaf{display:none}
   .hero__ph--m{display:block}
   /* La regla de arriba tambien alcanzaba a la hoja del bloque movil. */
   .hero__ph--m .hero__leaf{display:block;bottom:-4px;z-index:2}
@@ -744,26 +730,6 @@ footer{background:var(--navy);color:#fff}
          srcset="assets/comunidad-800.jpg 800w, assets/comunidad-1600.jpg 1600w"
          sizes="64vw" alt="" aria-hidden="true" width="1600" height="900">
   </div>
-  <div class="hero__fade" aria-hidden="true"></div>
-  <div class="hero__velo-b" aria-hidden="true"></div>
-  <svg class="hero__velo" viewBox="0 0 1440 360" preserveAspectRatio="none" aria-hidden="true">
-    <defs>
-      <!-- Casi horizontal: crema macizo hasta donde empieza el niño, y de ahi
-           se abre rapido para devolverle la foto al resto. Los porcentajes van
-           sobre la caja del trazado, que llega hasta x=1022. -->
-      <linearGradient id="veloG" x1="0" y1="0" x2="1" y2=".12">
-        <stop offset="0" stop-color="#F7F5EF" stop-opacity="1"/>
-        <stop offset=".58" stop-color="#F7F5EF" stop-opacity=".99"/>
-        <stop offset=".72" stop-color="#F7F5EF" stop-opacity=".62"/>
-        <stop offset=".85" stop-color="#F7F5EF" stop-opacity=".2"/>
-        <stop offset="1" stop-color="#F7F5EF" stop-opacity="0"/>
-      </linearGradient>
-      <filter id="veloB" x="-25%" y="-25%" width="150%" height="150%">
-        <feGaussianBlur stdDeviation="24"/>
-      </filter>
-    </defs>
-    <path d="M1022 0C935 78 862 148 781 190C701 232 640 272 557 320C380 342 190 347 0 347L0 0Z" fill="url(#veloG)" filter="url(#veloB)"/>
-  </svg>
   <img class="hero__leaf" src="assets/hojas.svg" alt="" aria-hidden="true">
 
   <header class="head">
